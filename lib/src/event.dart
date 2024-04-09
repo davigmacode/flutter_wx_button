@@ -2,8 +2,8 @@ import 'package:widget_event/widget_event.dart';
 
 /// Interactive events that [Button] can take on
 /// when receiving input from the user.
-abstract class ButtonEvent extends WidgetEvent {
-  const ButtonEvent(super.value);
+abstract class WxButtonEvent extends WidgetEvent {
+  const WxButtonEvent(super.value);
 
   /// The event when this widget has been selected.
   static const selected = WidgetEvent.selected;
@@ -32,43 +32,43 @@ abstract class ButtonEvent extends WidgetEvent {
   /// The state when the user is actively pressing down on the given widget.
   static const loading = WidgetEvent.loading;
 
-  /// Checker for whether events considers [ButtonEvent.disabled] to be active.
+  /// Checker for whether events considers [WxButtonEvent.disabled] to be active.
   static bool isDisabled(Set<WidgetEvent> events) {
     return events.contains(disabled);
   }
 
-  /// Checker for whether events considers [ButtonEvent.hovered] to be active.
+  /// Checker for whether events considers [WxButtonEvent.hovered] to be active.
   static bool isHovered(Set<WidgetEvent> events) {
     return events.contains(hovered);
   }
 
-  /// Checker for whether events considers [ButtonEvent.focused] to be active.
+  /// Checker for whether events considers [WxButtonEvent.focused] to be active.
   static bool isFocused(Set<WidgetEvent> events) {
     return events.contains(focused);
   }
 
-  /// Checker for whether events considers [ButtonEvent.pressed] to be active.
+  /// Checker for whether events considers [WxButtonEvent.pressed] to be active.
   static bool isPressed(Set<WidgetEvent> events) {
     return events.contains(pressed);
   }
 
-  /// Checker for whether events considers [ButtonEvent.loading] to be active.
+  /// Checker for whether events considers [WxButtonEvent.loading] to be active.
   static bool isLoading(Set<WidgetEvent> events) {
     return events.contains(loading);
   }
 
-  /// Checker for whether events considers [ButtonEvent.selected] to be active.
+  /// Checker for whether events considers [WxButtonEvent.selected] to be active.
   static bool isSelected(Set<WidgetEvent> events) {
     return events.contains(selected);
   }
 
-  /// Checker for whether events considers [ButtonEvent.indeterminate] to be active.
+  /// Checker for whether events considers [WxButtonEvent.indeterminate] to be active.
   static bool isIndeterminate(Set<WidgetEvent> events) {
     return events.contains(indeterminate);
   }
 }
 
-/// Manages a set of [ButtonEvent]s and notifies listeners of changes.
+/// Manages a set of [WxButtonEvent]s and notifies listeners of changes.
 ///
 /// Used by widgets that expose their internal event
 /// for the sake of extensions that add support for additional events.
@@ -77,7 +77,7 @@ abstract class ButtonEvent extends WidgetEvent {
 /// Listeners are notified whenever the value changes.
 /// The value should only be changed with update;
 /// it should not be modified directly.
-typedef ButtonEventController = WidgetEventController;
+typedef WxButtonEventController = WidgetEventController;
 
 /// Set of WidgetEvent
-typedef ButtonEvents = WidgetEvents;
+typedef WxButtonEvents = WidgetEvents;

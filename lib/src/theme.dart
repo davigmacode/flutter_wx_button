@@ -4,20 +4,20 @@ import 'style.dart';
 import 'theme_data.dart';
 
 /// A Widget that controls how descendant buttons should look like.
-class ButtonTheme extends InheritedTheme {
-  /// The properties for descendant [Button]s
+class WxButtonTheme extends InheritedTheme {
+  /// The properties for descendant [WxButton]s
   final WxButtonThemeData data;
 
   /// Creates a theme that controls
   /// how descendant buttons should look like.
-  const ButtonTheme({
+  const WxButtonTheme({
     super.key,
     required this.data,
     required super.child,
   });
 
-  /// Creates an [ButtonTheme] that controls the style of
-  /// descendant widgets, and merges in the current [ButtonTheme], if any.
+  /// Creates an [WxButtonTheme] that controls the style of
+  /// descendant widgets, and merges in the current [WxButtonTheme], if any.
   ///
   /// The [child] arguments must not be null.
   static Widget merge({
@@ -35,8 +35,8 @@ class ButtonTheme extends InheritedTheme {
   }) {
     return Builder(
       builder: (BuildContext context) {
-        final parent = ButtonTheme.of(context);
-        return ButtonTheme(
+        final parent = WxButtonTheme.of(context);
+        return WxButtonTheme(
           key: key,
           data: parent.merge(data).copyWith(
                 curve: curve,
@@ -54,17 +54,17 @@ class ButtonTheme extends InheritedTheme {
     );
   }
 
-  /// The [ButtonTheme] from the closest instance of
+  /// The [WxButtonTheme] from the closest instance of
   /// this class that encloses the given context.
   ///
   /// Typical usage is as follows:
   ///
   /// ```dart
-  /// ButtonThemeData theme = ButtonTheme.of(context);
+  /// WxButtonThemeData theme = WxButtonTheme.of(context);
   /// ```
   static WxButtonThemeData of(BuildContext context) {
     final parentTheme =
-        context.dependOnInheritedWidgetOfExactType<ButtonTheme>();
+        context.dependOnInheritedWidgetOfExactType<WxButtonTheme>();
     if (parentTheme != null) return parentTheme.data;
 
     final globalTheme = Theme.of(context).extension<WxButtonThemeData>();
@@ -74,11 +74,11 @@ class ButtonTheme extends InheritedTheme {
 
   @override
   Widget wrap(BuildContext context, Widget child) {
-    return ButtonTheme(data: data, child: child);
+    return WxButtonTheme(data: data, child: child);
   }
 
   @override
-  bool updateShouldNotify(ButtonTheme oldWidget) {
+  bool updateShouldNotify(WxButtonTheme oldWidget) {
     return oldWidget.data != data;
   }
 

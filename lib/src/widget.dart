@@ -6,9 +6,9 @@ import 'event.dart';
 import 'render.dart';
 
 /// Buttons allow users to take actions, and make choices, with a single tap
-class Button extends StatelessWidget {
+class WxButton extends StatelessWidget {
   /// Create a button
-  const Button({
+  const WxButton({
     super.key,
     this.loading = false,
     this.disabled = false,
@@ -28,7 +28,7 @@ class Button extends StatelessWidget {
   }) : additionalStyle = null;
 
   /// Create a block button
-  Button.block({
+  WxButton.block({
     super.key,
     CrossAxisAlignment? alignChildren,
     MainAxisAlignment? justifyChildren,
@@ -55,7 +55,7 @@ class Button extends StatelessWidget {
         );
 
   /// Create an icon button
-  Button.icon({
+  WxButton.icon({
     super.key,
     WxButtonShape shape = WxButtonShape.circle,
     double? size,
@@ -116,7 +116,7 @@ class Button extends StatelessWidget {
   final WxButtonStyle? style;
 
   /// {@macro widgetarian.button.eventsController}
-  final ButtonEventController? eventsController;
+  final WxButtonEventController? eventsController;
 
   /// {@macro widgetarian.button.curve}
   final Curve? curve;
@@ -133,10 +133,10 @@ class Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ButtonRender(
+    return WxButtonRender(
       curve: curve,
       duration: duration,
-      theme: ButtonTheme.of(context),
+      theme: WxButtonTheme.of(context),
       style: effectiveStyle,
       variant: variant,
       severity: severity,

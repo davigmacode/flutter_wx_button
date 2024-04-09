@@ -4,7 +4,7 @@ import 'package:wx_utils/wx_utils.dart';
 import 'style.dart';
 import 'theme_preset.dart';
 
-/// Defines the visual properties of [Button].
+/// Defines the visual properties of [WxButton].
 ///
 /// Descendant widgets obtain the current [WxButtonThemeData] object using
 /// `ButtonTheme.of(context)`. Instances of [WxButtonThemeData]
@@ -44,7 +44,7 @@ class WxButtonThemeData extends ThemeExtension<WxButtonThemeData>
         WxButtonSeverity.info: infoStyle,
       };
 
-  /// Creates a theme data that can be used for [ButtonTheme].
+  /// Creates a theme data that can be used for [WxButtonTheme].
   const WxButtonThemeData({
     required this.curve,
     required this.duration,

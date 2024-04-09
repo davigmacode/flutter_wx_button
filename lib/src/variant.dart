@@ -1,9 +1,8 @@
-import 'package:flutter/widgets.dart';
 import 'style.dart';
 import 'widget.dart';
 
 /// Buttons allow users to take actions, and make choices, with a single tap
-class DrivenButton extends Button {
+class WxDrivenButton extends WxButton {
   /// The style to be applied when no events occurs.
   final WxButtonStyle? enabledStyle;
 
@@ -33,7 +32,7 @@ class DrivenButton extends Button {
       );
 
   /// Create a variant button
-  const DrivenButton({
+  const WxDrivenButton({
     super.key,
     super.variant,
     super.severity,
@@ -58,7 +57,7 @@ class DrivenButton extends Button {
   });
 
   /// Create a block variant button
-  DrivenButton.block({
+  WxDrivenButton.block({
     super.key,
     super.variant,
     super.severity,
@@ -86,7 +85,7 @@ class DrivenButton extends Button {
   }) : super.block();
 
   /// Create an icon variant button
-  DrivenButton.icon({
+  WxDrivenButton.icon({
     super.key,
     super.variant,
     super.severity,
@@ -114,7 +113,7 @@ class DrivenButton extends Button {
 }
 
 /// Text buttons are typically used for less-pronounced actions.
-class TextButton extends DrivenButton {
+class TextButton extends WxDrivenButton {
   @override
   get variant => WxButtonVariant.text;
 
@@ -200,7 +199,7 @@ class TextButton extends DrivenButton {
 /// They’re useful in contexts where a lower-priority button requires slightly more emphasis
 /// than an outline would give, such as "Next" in an onboarding flow.
 /// Tonal buttons use the secondary color mapping.
-class TonalButton extends DrivenButton {
+class TonalButton extends WxDrivenButton {
   @override
   get variant => WxButtonVariant.tonal;
 
@@ -285,7 +284,7 @@ class TonalButton extends DrivenButton {
 /// Filled buttons are high-emphasis,
 /// distinguished by their use of elevation and fill.
 /// They contain actions that are primary to your app.
-class FilledButton extends DrivenButton {
+class FilledButton extends WxDrivenButton {
   @override
   get variant => WxButtonVariant.filled;
 
@@ -370,7 +369,7 @@ class FilledButton extends DrivenButton {
 /// Elevated buttons are high-emphasis,
 /// distinguished by their use of elevation and fill.
 /// They contain actions that are primary to your app.
-class ElevatedButton extends DrivenButton {
+class ElevatedButton extends WxDrivenButton {
   @override
   get variant => WxButtonVariant.elevated;
 
@@ -455,7 +454,7 @@ class ElevatedButton extends DrivenButton {
 /// Outlined buttons are medium-emphasis buttons.
 /// They contain actions that are important
 /// but aren't the primary action in an app.
-class OutlinedButton extends DrivenButton {
+class OutlinedButton extends WxDrivenButton {
   @override
   get variant => WxButtonVariant.outlined;
 

@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:widget_event/widget_event.dart';
-import 'package:wx_utils/wx_utils.dart';
 import 'package:wx_sheet/wx_sheet.dart';
 import 'event.dart';
 
@@ -318,23 +317,23 @@ class WxDrivenButtonStyle extends WxButtonStyle
   final bool? inherited;
 
   /// The style to be resolved when
-  /// events includes [ButtonEvent.selected].
+  /// events includes [WxButtonEvent.selected].
   final WxButtonStyle? selectedStyle;
 
   /// The style to be resolved when
-  /// events includes [ButtonEvent.focused].
+  /// events includes [WxButtonEvent.focused].
   final WxButtonStyle? focusedStyle;
 
   /// The style to be resolved when
-  /// events includes [ButtonEvent.hovered].
+  /// events includes [WxButtonEvent.hovered].
   final WxButtonStyle? hoveredStyle;
 
   /// The style to be resolved when
-  /// events includes [ButtonEvent.pressed].
+  /// events includes [WxButtonEvent.pressed].
   final WxButtonStyle? pressedStyle;
 
   /// The style to be resolved when
-  /// events includes [ButtonEvent.disabled].
+  /// events includes [WxButtonEvent.disabled].
   final WxButtonStyle? disabledStyle;
 
   /// Map of driven style, order matters

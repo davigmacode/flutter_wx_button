@@ -8,8 +8,8 @@ import 'event.dart';
 import 'style.dart';
 import 'theme_data.dart';
 
-class ButtonRender extends StatefulWidget {
-  const ButtonRender({
+class WxButtonRender extends StatefulWidget {
+  const WxButtonRender({
     super.key,
     this.leading,
     this.trailing,
@@ -151,7 +151,7 @@ class ButtonRender extends StatefulWidget {
   /// Used by widgets that expose their internal event
   /// for the sake of extensions that add support for additional events.
   /// {@endtemplate}
-  final ButtonEventController? eventsController;
+  final WxButtonEventController? eventsController;
 
   /// {@template widgetarian.button.curve}
   /// The curve to apply when animating the parameters of this widget.
@@ -167,13 +167,13 @@ class ButtonRender extends StatefulWidget {
   /// The style to be applied to the button.
   ///
   /// If [style] is an event driven [WxDrivenButtonStyle],
-  /// then [WxDrivenButtonStyle.evaluate] is used for the following [ButtonEvent]s:
+  /// then [WxDrivenButtonStyle.evaluate] is used for the following [WxButtonEvent]s:
   ///
-  ///  * [ButtonEvent.selected].
-  ///  * [ButtonEvent.focused].
-  ///  * [ButtonEvent.hovered].
-  ///  * [ButtonEvent.pressed].
-  ///  * [ButtonEvent.disabled].
+  ///  * [WxButtonEvent.selected].
+  ///  * [WxButtonEvent.focused].
+  ///  * [WxButtonEvent.hovered].
+  ///  * [WxButtonEvent.pressed].
+  ///  * [WxButtonEvent.disabled].
   /// {@endtemplate}
   final WxButtonStyle? style;
 
@@ -211,11 +211,11 @@ class ButtonRender extends StatefulWidget {
   }
 
   @override
-  State<ButtonRender> createState() => ButtonRenderState();
+  State<WxButtonRender> createState() => WxButtonRenderState();
 }
 
-class ButtonRenderState extends State<ButtonRender>
-    with WidgetEventMixin<ButtonRender> {
+class WxButtonRenderState extends State<WxButtonRender>
+    with WidgetEventMixin<WxButtonRender> {
   Curve get curve => widget.curve ?? widget.theme.curve;
   Duration get duration => widget.duration ?? widget.theme.duration;
 
@@ -282,44 +282,44 @@ class ButtonRenderState extends State<ButtonRender>
   bool get hasTrailing => widget.trailing != null;
 
   void onTap() {
-    widgetEvents.toggle(ButtonEvent.pressed, false);
+    widgetEvents.toggle(WxButtonEvent.pressed, false);
     widget.onPressed?.call();
     widget.onSelected?.call(!widget.selected);
   }
 
   void onTapCancel() {
-    widgetEvents.toggle(ButtonEvent.pressed, false);
+    widgetEvents.toggle(WxButtonEvent.pressed, false);
   }
 
   void onTapDown(TapDownDetails details) {
-    widgetEvents.toggle(ButtonEvent.pressed, true);
+    widgetEvents.toggle(WxButtonEvent.pressed, true);
   }
 
   void onHover(bool value) {
-    widgetEvents.toggle(ButtonEvent.hovered, value);
+    widgetEvents.toggle(WxButtonEvent.hovered, value);
   }
 
   void onFocus(bool value) {
-    widgetEvents.toggle(ButtonEvent.focused, value);
+    widgetEvents.toggle(WxButtonEvent.focused, value);
   }
 
   @override
   void initState() {
     initWidgetEvents(widget.eventsController);
-    widgetEvents.toggle(ButtonEvent.selected, widget.selected);
-    widgetEvents.toggle(ButtonEvent.loading, widget.loading);
-    widgetEvents.toggle(ButtonEvent.disabled, widget.disabled);
+    widgetEvents.toggle(WxButtonEvent.selected, widget.selected);
+    widgetEvents.toggle(WxButtonEvent.loading, widget.loading);
+    widgetEvents.toggle(WxButtonEvent.disabled, widget.disabled);
     setStyle();
     super.initState();
   }
 
   @override
-  void didUpdateWidget(ButtonRender oldWidget) {
+  void didUpdateWidget(WxButtonRender oldWidget) {
     if (mounted) {
       updateWidgetEvents(oldWidget.eventsController, widget.eventsController);
-      widgetEvents.toggle(ButtonEvent.selected, widget.selected);
-      widgetEvents.toggle(ButtonEvent.loading, widget.loading);
-      widgetEvents.toggle(ButtonEvent.disabled, widget.disabled);
+      widgetEvents.toggle(WxButtonEvent.selected, widget.selected);
+      widgetEvents.toggle(WxButtonEvent.loading, widget.loading);
+      widgetEvents.toggle(WxButtonEvent.disabled, widget.disabled);
       setStyle();
       super.didUpdateWidget(oldWidget);
     }
