@@ -57,7 +57,7 @@ class WxButton extends StatelessWidget {
   /// Create an icon button
   WxButton.icon({
     super.key,
-    WxButtonShape shape = WxButtonShape.circle,
+    OutlinedBorder border = const CircleBorder(),
     double? size,
     this.loading = false,
     this.disabled = false,
@@ -75,7 +75,7 @@ class WxButton extends StatelessWidget {
     this.trailing,
     required this.child,
   }) : additionalStyle = const WxButtonStyle().icon(
-          shape: shape,
+          border: border,
           size: size,
         );
 

@@ -1,3 +1,5 @@
+import 'dart:ui';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/widgets.dart';
 import 'package:widget_event/widget_event.dart';
 import 'package:wx_utils/wx_utils.dart';
@@ -219,6 +221,8 @@ class WxButtonRenderState extends State<WxButtonRender>
   Curve get curve => widget.curve ?? widget.theme.curve;
   Duration get duration => widget.duration ?? widget.theme.duration;
 
+  PointerDeviceKind? pointerDeviceKind;
+
   WxButtonStyle style = const WxButtonStyle();
 
   @protected
@@ -238,37 +242,7 @@ class WxButtonRenderState extends State<WxButtonRender>
         WxDrivenButtonStyle.evaluate(withFallback, widgetEvents.value);
 
     style = WxButtonStyle.from(result);
-    setState(() {});
   }
-
-  Color? get defaultForegroundColor {
-    return style.isFilled || style.isElevated
-        ? widget.selected && widget.disabled
-            ? backgroundColor
-            : WxColors.onSurface(backgroundColor)
-        : null;
-  }
-
-  Color? get backgroundColor => WxColors.withTransparency(
-        style.backgroundColor,
-        opacity: style.backgroundOpacity,
-        alpha: style.backgroundAlpha,
-      );
-
-  Color? get borderColor => WxColors.withTransparency(
-        style.borderColor,
-        opacity: style.borderOpacity,
-        alpha: style.borderAlpha,
-      );
-
-  Color? get foregroundColor => WxColors.withTransparency(
-        style.foregroundColor ?? defaultForegroundColor,
-        opacity: style.foregroundOpacity,
-        alpha: style.foregroundAlpha,
-      );
-
-  Color? get overlayColor =>
-      style.overlayColor ?? WxColors.onSurface(backgroundColor);
 
   EdgeInsetsGeometry get padding {
     final padding = style.padding ?? EdgeInsets.zero;
@@ -282,20 +256,36 @@ class WxButtonRenderState extends State<WxButtonRender>
   bool get hasTrailing => widget.trailing != null;
 
   void onTap() {
-    widgetEvents.toggle(WxButtonEvent.pressed, false);
     widget.onPressed?.call();
     widget.onSelected?.call(!widget.selected);
   }
 
-  void onTapCancel() {
+  void onTapCancel() async {
+    print('onTapCancel');
+    if (pointerDeviceKind == PointerDeviceKind.touch) {
+      await Future.delayed(duration);
+    }
+    pointerDeviceKind = null;
+    widgetEvents.toggle(WxButtonEvent.pressed, false);
+  }
+
+  void onTapUp(TapUpDetails details) async {
+    print('onTapUp');
+    if (details.kind == PointerDeviceKind.touch) {
+      await Future.delayed(duration);
+    }
+    pointerDeviceKind = null;
     widgetEvents.toggle(WxButtonEvent.pressed, false);
   }
 
   void onTapDown(TapDownDetails details) {
+    print('onTapDown');
+    pointerDeviceKind = details.kind;
     widgetEvents.toggle(WxButtonEvent.pressed, true);
   }
 
   void onHover(bool value) {
+    // print('onHover: $value');
     widgetEvents.toggle(WxButtonEvent.hovered, value);
   }
 
@@ -309,8 +299,13 @@ class WxButtonRenderState extends State<WxButtonRender>
     widgetEvents.toggle(WxButtonEvent.selected, widget.selected);
     widgetEvents.toggle(WxButtonEvent.loading, widget.loading);
     widgetEvents.toggle(WxButtonEvent.disabled, widget.disabled);
-    setStyle();
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    setStyle();
+    super.didChangeDependencies();
   }
 
   @override
@@ -327,8 +322,11 @@ class WxButtonRenderState extends State<WxButtonRender>
 
   @override
   void didChangeWidgetEvents() {
-    super.didChangeWidgetEvents();
-    didUpdateWidget(widget);
+    setStyle();
+    SchedulerBinding.instance.scheduleFrameCallback((_) {
+      setState(() {});
+    });
+    // super.didChangeWidgetEvents();
   }
 
   @override
@@ -338,47 +336,73 @@ class WxButtonRenderState extends State<WxButtonRender>
       button: widget.canTap,
       enabled: widget.enabled,
       child: WxSheet(
+        animated: true,
+        selected: widget.selected,
+        disabled: widget.disabled,
         curve: curve,
         duration: duration,
         style: style,
-        foregroundColor: foregroundColor,
-        backgroundColor: backgroundColor,
-        borderColor: borderColor,
         padding: EdgeInsets.zero,
-        child: WxAnchor(
-          curve: curve,
-          duration: duration,
-          disabled: !widget.canTap,
-          autofocus: widget.autofocus,
-          focusNode: widget.focusNode,
-          overlayColor: overlayColor,
-          overlayDisabled: style.overlayDisabled,
-          onTap: onTap,
-          onTapDown: onTapDown,
-          onTapCancel: onTapCancel,
-          onHover: onHover,
-          onFocus: onFocus,
-          child: AnimatedPadding(
+        wrapper: (context, sheetTheme, child) {
+          final sheetStyle = sheetTheme.style;
+
+          final overlayColor = style.overlayColor ??
+              WxColors.onSurface(sheetStyle.backgroundColor);
+          child = WxAnchor(
             curve: curve,
             duration: duration,
-            padding: padding,
-            child: WxTile(
-              leading: hasLeading
-                  ? DrivenWidget.evaluate(
-                      widget.leading!,
-                      widgetEvents.value,
-                    )
-                  : null,
-              trailing: hasTrailing
-                  ? DrivenWidget.evaluate(
-                      widget.trailing!,
-                      widgetEvents.value,
-                    )
-                  : null,
-              child: DrivenWidget.evaluate(
-                widget.child,
-                widgetEvents.value,
+            disabled: !widget.canTap,
+            autofocus: widget.autofocus,
+            focusNode: widget.focusNode,
+            overlayColor: overlayColor,
+            overlayDisabled: style.overlayDisabled,
+            borderRadius: sheetStyle.borderRadius,
+            onTap: onTap,
+            onTapCancel: onTapCancel,
+            onTapDown: onTapDown,
+            onTapUp: onTapUp,
+            onHover: onHover,
+            onFocus: onFocus,
+            child: child,
+          );
+
+          child = WxAnimatedTileTheme(
+            curve: sheetTheme.curve,
+            duration: sheetTheme.duration,
+            data: WxTileThemeData(
+              style: WxTileStyle(
+                crossAxisAlignment: sheetStyle.foregroundAlign,
+                mainAxisAlignment: sheetStyle.foregroundJustify,
+                inline: sheetStyle.width != double.infinity,
+                spacing: sheetStyle.foregroundSpacing,
+                spacingEnforced: sheetStyle.foregroundLoosen,
               ),
+            ),
+            child: child,
+          );
+
+          return child;
+        },
+        child: AnimatedPadding(
+          curve: curve,
+          duration: duration,
+          padding: padding,
+          child: WxTile(
+            leading: hasLeading
+                ? DrivenWidget.evaluate(
+                    widget.leading!,
+                    widgetEvents.value,
+                  )
+                : null,
+            trailing: hasTrailing
+                ? DrivenWidget.evaluate(
+                    widget.trailing!,
+                    widgetEvents.value,
+                  )
+                : null,
+            child: DrivenWidget.evaluate(
+              widget.child,
+              widgetEvents.value,
             ),
           ),
         ),

@@ -4,7 +4,6 @@ import 'package:widget_event/widget_event.dart';
 import 'package:wx_sheet/wx_sheet.dart';
 import 'event.dart';
 
-typedef WxButtonShape = WxSheetShape;
 typedef WxButtonVariant = WxSheetVariant;
 typedef WxButtonSeverity = WxSheetSeverity;
 
@@ -51,7 +50,7 @@ class WxButtonStyle extends WxSheetStyle {
     super.clipBehavior,
     super.overlayDisabled,
     super.overlayColor,
-    super.shadowColor,
+    super.elevationColor,
     super.surfaceTint,
     super.elevation,
     super.foregroundStyle,
@@ -72,7 +71,11 @@ class WxButtonStyle extends WxSheetStyle {
     super.borderWidth,
     super.borderRadius,
     super.borderStyle,
-    super.shape,
+    super.borderOffset,
+    super.border,
+    super.image,
+    super.shadows,
+    super.gradient,
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
@@ -88,6 +91,7 @@ class WxButtonStyle extends WxSheetStyle {
   static const defaults = WxButtonStyle(
     clipBehavior: Clip.antiAlias,
     foregroundJustify: MainAxisAlignment.center,
+    foregroundAlign: CrossAxisAlignment.center,
     foregroundLoosen: true,
   );
 
@@ -98,11 +102,11 @@ class WxButtonStyle extends WxSheetStyle {
   /// Creates a copy of this [WxButtonStyle] but with
   /// [padding] is [EdgeInsets.zero] and squared size.
   WxButtonStyle icon({
-    WxButtonShape shape = WxButtonShape.circle,
+    OutlinedBorder border = const CircleBorder(),
     double? size,
   }) {
     return copyWith(
-      shape: shape,
+      border: border,
       width: size ?? defaults.height,
       height: size ?? defaults.height,
       padding: EdgeInsets.zero,
@@ -142,7 +146,7 @@ class WxButtonStyle extends WxSheetStyle {
     Clip? clipBehavior,
     bool? overlayDisabled,
     Color? overlayColor,
-    Color? shadowColor,
+    Color? elevationColor,
     Color? surfaceTint,
     double? elevation,
     TextStyle? foregroundStyle,
@@ -163,7 +167,11 @@ class WxButtonStyle extends WxSheetStyle {
     double? borderWidth,
     BorderRadius? borderRadius,
     BorderStyle? borderStyle,
-    WxButtonShape? shape,
+    double? borderOffset,
+    OutlinedBorder? border,
+    DecorationImage? image,
+    List<BoxShadow>? shadows,
+    Gradient? gradient,
     Color? iconColor,
     double? iconOpacity,
     double? iconSize,
@@ -188,7 +196,7 @@ class WxButtonStyle extends WxSheetStyle {
       clipBehavior: clipBehavior ?? this.clipBehavior,
       overlayDisabled: overlayDisabled ?? this.overlayDisabled,
       overlayColor: overlayColor ?? this.overlayColor,
-      shadowColor: shadowColor ?? this.shadowColor,
+      elevationColor: elevationColor ?? this.elevationColor,
       surfaceTint: surfaceTint ?? this.surfaceTint,
       elevation: elevation ?? this.elevation,
       foregroundStyle: foregroundStyle ?? this.foregroundStyle,
@@ -209,7 +217,11 @@ class WxButtonStyle extends WxSheetStyle {
       borderWidth: borderWidth ?? this.borderWidth,
       borderRadius: borderRadius ?? this.borderRadius,
       borderStyle: borderStyle ?? this.borderStyle,
-      shape: shape ?? this.shape,
+      borderOffset: borderOffset ?? this.borderOffset,
+      border: border ?? this.border,
+      image: image ?? this.image,
+      shadows: shadows ?? this.shadows,
+      gradient: gradient ?? this.gradient,
       iconColor: iconColor ?? this.iconColor,
       iconOpacity: iconOpacity ?? this.iconOpacity,
       iconSize: iconSize ?? this.iconSize,
@@ -259,7 +271,7 @@ class WxButtonStyle extends WxSheetStyle {
       clipBehavior: other.clipBehavior,
       overlayDisabled: other.overlayDisabled,
       overlayColor: other.overlayColor,
-      shadowColor: other.shadowColor,
+      elevationColor: other.elevationColor,
       surfaceTint: other.surfaceTint,
       elevation: other.elevation,
       foregroundStyle: other.foregroundStyle,
@@ -280,7 +292,11 @@ class WxButtonStyle extends WxSheetStyle {
       borderWidth: other.borderWidth,
       borderRadius: other.borderRadius,
       borderStyle: other.borderStyle,
-      shape: other.shape,
+      borderOffset: other.borderOffset,
+      border: other.border,
+      image: other.image,
+      shadows: other.shadows,
+      gradient: other.gradient,
       iconColor: other.iconColor,
       iconOpacity: other.iconOpacity,
       iconSize: other.iconSize,
@@ -360,7 +376,7 @@ class WxDrivenButtonStyle extends WxButtonStyle
     super.clipBehavior,
     super.overlayDisabled,
     super.overlayColor,
-    super.shadowColor,
+    super.elevationColor,
     super.surfaceTint,
     super.elevation,
     super.foregroundStyle,
@@ -381,7 +397,11 @@ class WxDrivenButtonStyle extends WxButtonStyle
     super.borderWidth,
     super.borderRadius,
     super.borderStyle,
-    super.shape,
+    super.borderOffset,
+    super.border,
+    super.image,
+    super.shadows,
+    super.gradient,
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
@@ -431,7 +451,7 @@ class WxDrivenButtonStyle extends WxButtonStyle
     for (var e in driven.entries) {
       if (events.contains(e.key)) {
         final evaluated = evaluate(e.value, events);
-        style = inherited == true
+        style = inherited != false
             ? style.merge(evaluated)
             : WxButtonStyle.from(evaluated);
       }
@@ -457,7 +477,7 @@ class WxDrivenButtonStyle extends WxButtonStyle
     Clip? clipBehavior,
     bool? overlayDisabled,
     Color? overlayColor,
-    Color? shadowColor,
+    Color? elevationColor,
     Color? surfaceTint,
     double? elevation,
     TextStyle? foregroundStyle,
@@ -478,7 +498,11 @@ class WxDrivenButtonStyle extends WxButtonStyle
     double? borderWidth,
     BorderRadius? borderRadius,
     BorderStyle? borderStyle,
-    WxButtonShape? shape,
+    double? borderOffset,
+    OutlinedBorder? border,
+    DecorationImage? image,
+    List<BoxShadow>? shadows,
+    Gradient? gradient,
     Color? iconColor,
     double? iconOpacity,
     double? iconSize,
@@ -503,7 +527,7 @@ class WxDrivenButtonStyle extends WxButtonStyle
       clipBehavior: clipBehavior,
       overlayDisabled: overlayDisabled,
       overlayColor: overlayColor,
-      shadowColor: shadowColor,
+      elevationColor: elevationColor,
       surfaceTint: surfaceTint,
       elevation: elevation,
       foregroundStyle: foregroundStyle,
@@ -524,7 +548,11 @@ class WxDrivenButtonStyle extends WxButtonStyle
       borderWidth: borderWidth,
       borderRadius: borderRadius,
       borderStyle: borderStyle,
-      shape: shape,
+      borderOffset: borderOffset,
+      border: border,
+      image: image,
+      shadows: shadows,
+      gradient: gradient,
       iconColor: iconColor,
       iconOpacity: iconOpacity,
       iconSize: iconSize,

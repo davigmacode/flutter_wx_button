@@ -59,7 +59,7 @@ class WxButtonThemeData extends ThemeExtension<WxButtonThemeData>
   /// Create a [WxButtonThemeData] with some reasonable default values.
   static const fallback = WxButtonThemeData(
     curve: Curves.linear,
-    duration: Duration(milliseconds: 200),
+    duration: Duration(milliseconds: 150),
     style: WxButtonStyle.defaults,
     variantStyle: {},
     dangerStyle: {},
@@ -93,11 +93,13 @@ class WxButtonThemeData extends ThemeExtension<WxButtonThemeData>
 
   /// A [WxButtonThemeData] with ios default values.
   factory WxButtonThemeData.ios(BuildContext context) =>
-      ButtonThemeIos(context);
+      WxButtonThemeIos(context);
 
   /// Return [WxButtonStyle] that depends on [variant] and [severity]
-  WxButtonStyle resolve(
-      {WxButtonVariant? variant, WxButtonSeverity? severity}) {
+  WxButtonStyle resolve({
+    WxButtonVariant? variant,
+    WxButtonSeverity? severity,
+  }) {
     variant ??= style.variant;
     severity ??= style.severity;
     return const WxButtonStyle()

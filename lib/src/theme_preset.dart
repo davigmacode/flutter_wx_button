@@ -93,7 +93,7 @@ class WxButtonThemeM2 extends WxButtonThemeData {
         foregroundSpacing: 8.0,
         foregroundStyle: textTheme.labelLarge?.copyWith(height: 1),
         borderColor: colorScheme.outline,
-        shadowColor: colorScheme.shadow,
+        elevationColor: colorScheme.shadow,
       ).merge(super.style);
 
   @override
@@ -233,7 +233,7 @@ class WxButtonThemeM3 extends WxButtonThemeData {
         foregroundStyle: textTheme.labelLarge?.copyWith(height: 1),
         foregroundColor: colorScheme.primary,
         borderColor: colorScheme.outline,
-        shadowColor: colorScheme.shadow,
+        elevationColor: colorScheme.shadow,
       ).merge(super.style);
 
   @override
@@ -342,8 +342,8 @@ class WxButtonThemeM3 extends WxButtonThemeData {
 }
 
 @immutable
-class ButtonThemeIos extends WxButtonThemeData {
-  ButtonThemeIos(
+class WxButtonThemeIos extends WxButtonThemeData {
+  WxButtonThemeIos(
     BuildContext context, [
     super.other,
   ])  : textTheme = Theme.of(context).textTheme,
@@ -366,7 +366,7 @@ class ButtonThemeIos extends WxButtonThemeData {
         foregroundSpacing: 8.0,
         foregroundStyle: textTheme.labelLarge?.copyWith(height: 1),
         borderColor: colorScheme.outline,
-        shadowColor: colorScheme.shadow,
+        elevationColor: colorScheme.shadow,
       ).merge(super.style);
 
   @override
