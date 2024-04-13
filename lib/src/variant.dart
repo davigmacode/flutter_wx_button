@@ -36,9 +36,9 @@ class WxDrivenButton extends WxButton {
     super.key,
     super.variant,
     super.severity,
-    super.loading = false,
-    super.disabled = false,
-    super.autofocus = false,
+    super.loading,
+    super.disabled,
+    super.autofocus,
     super.focusNode,
     super.onPressed,
     super.eventsController,
@@ -63,10 +63,10 @@ class WxDrivenButton extends WxButton {
     super.severity,
     super.alignChildren,
     super.justifyChildren,
-    super.expanded = true,
-    super.loading = false,
-    super.disabled = false,
-    super.autofocus = false,
+    super.expanded,
+    super.loading,
+    super.disabled,
+    super.autofocus,
     super.focusNode,
     super.onPressed,
     super.eventsController,
@@ -89,11 +89,11 @@ class WxDrivenButton extends WxButton {
     super.key,
     super.variant,
     super.severity,
-    super.shape = WxButtonShape.circle,
+    super.border,
     super.size,
-    super.loading = false,
-    super.disabled = false,
-    super.autofocus = false,
+    super.loading,
+    super.disabled,
+    super.autofocus,
     super.focusNode,
     super.onPressed,
     super.eventsController,
@@ -113,17 +113,17 @@ class WxDrivenButton extends WxButton {
 }
 
 /// Text buttons are typically used for less-pronounced actions.
-class TextButton extends WxDrivenButton {
+class WxTextButton extends WxDrivenButton {
   @override
   get variant => WxButtonVariant.text;
 
   /// Create a text button
-  const TextButton({
+  const WxTextButton({
     super.key,
     super.severity,
-    super.loading = false,
-    super.disabled = false,
-    super.autofocus = false,
+    super.loading,
+    super.disabled,
+    super.autofocus,
     super.focusNode,
     super.onPressed,
     super.eventsController,
@@ -142,15 +142,15 @@ class TextButton extends WxDrivenButton {
   });
 
   /// Create a block text button
-  TextButton.block({
+  WxTextButton.block({
     super.key,
     super.severity,
     super.alignChildren,
     super.justifyChildren,
-    super.expanded = true,
-    super.loading = false,
-    super.disabled = false,
-    super.autofocus = false,
+    super.expanded,
+    super.loading,
+    super.disabled,
+    super.autofocus,
     super.focusNode,
     super.onPressed,
     super.eventsController,
@@ -169,14 +169,14 @@ class TextButton extends WxDrivenButton {
   }) : super.block();
 
   /// Create an icon text button
-  TextButton.icon({
+  WxTextButton.icon({
     super.key,
     super.severity,
-    super.shape = WxButtonShape.circle,
+    super.border,
     super.size,
-    super.loading = false,
-    super.disabled = false,
-    super.autofocus = false,
+    super.loading,
+    super.disabled,
+    super.autofocus,
     super.focusNode,
     super.onPressed,
     super.eventsController,
@@ -199,17 +199,17 @@ class TextButton extends WxDrivenButton {
 /// They’re useful in contexts where a lower-priority button requires slightly more emphasis
 /// than an outline would give, such as "Next" in an onboarding flow.
 /// Tonal buttons use the secondary color mapping.
-class TonalButton extends WxDrivenButton {
+class WxTonalButton extends WxDrivenButton {
   @override
   get variant => WxButtonVariant.tonal;
 
   /// Create a tonal button
-  const TonalButton({
+  const WxTonalButton({
     super.key,
     super.severity,
-    super.loading = false,
-    super.disabled = false,
-    super.autofocus = false,
+    super.loading,
+    super.disabled,
+    super.autofocus,
     super.focusNode,
     super.onPressed,
     super.eventsController,
@@ -228,15 +228,15 @@ class TonalButton extends WxDrivenButton {
   });
 
   /// Create a block tonal button
-  TonalButton.block({
+  WxTonalButton.block({
     super.key,
     super.severity,
     super.alignChildren,
     super.justifyChildren,
-    super.expanded = true,
-    super.loading = false,
-    super.disabled = false,
-    super.autofocus = false,
+    super.expanded,
+    super.loading,
+    super.disabled,
+    super.autofocus,
     super.focusNode,
     super.onPressed,
     super.eventsController,
@@ -255,14 +255,14 @@ class TonalButton extends WxDrivenButton {
   }) : super.block();
 
   /// Create an icon tonal button
-  TonalButton.icon({
+  WxTonalButton.icon({
     super.key,
     super.severity,
-    super.shape = WxButtonShape.circle,
+    super.border,
     super.size,
-    super.loading = false,
-    super.disabled = false,
-    super.autofocus = false,
+    super.loading,
+    super.disabled,
+    super.autofocus,
     super.focusNode,
     super.onPressed,
     super.eventsController,
@@ -284,17 +284,17 @@ class TonalButton extends WxDrivenButton {
 /// Filled buttons are high-emphasis,
 /// distinguished by their use of elevation and fill.
 /// They contain actions that are primary to your app.
-class FilledButton extends WxDrivenButton {
+class WxFilledButton extends WxDrivenButton {
   @override
   get variant => WxButtonVariant.filled;
 
   /// Create a filled button
-  const FilledButton({
+  const WxFilledButton({
     super.key,
     super.severity,
-    super.loading = false,
-    super.disabled = false,
-    super.autofocus = false,
+    super.loading,
+    super.disabled,
+    super.autofocus,
     super.focusNode,
     super.onPressed,
     super.eventsController,
@@ -313,15 +313,15 @@ class FilledButton extends WxDrivenButton {
   });
 
   /// Create a block filled button
-  FilledButton.block({
+  WxFilledButton.block({
     super.key,
     super.severity,
     super.alignChildren,
     super.justifyChildren,
-    super.expanded = true,
-    super.loading = false,
-    super.disabled = false,
-    super.autofocus = false,
+    super.expanded,
+    super.loading,
+    super.disabled,
+    super.autofocus,
     super.focusNode,
     super.onPressed,
     super.eventsController,
@@ -340,14 +340,14 @@ class FilledButton extends WxDrivenButton {
   }) : super.block();
 
   /// Create an icon filled button
-  FilledButton.icon({
+  WxFilledButton.icon({
     super.key,
     super.severity,
-    super.shape = WxButtonShape.circle,
+    super.border,
     super.size,
-    super.loading = false,
-    super.disabled = false,
-    super.autofocus = false,
+    super.loading,
+    super.disabled,
+    super.autofocus,
     super.focusNode,
     super.onPressed,
     super.eventsController,
@@ -369,12 +369,12 @@ class FilledButton extends WxDrivenButton {
 /// Elevated buttons are high-emphasis,
 /// distinguished by their use of elevation and fill.
 /// They contain actions that are primary to your app.
-class ElevatedButton extends WxDrivenButton {
+class WxElevatedButton extends WxDrivenButton {
   @override
   get variant => WxButtonVariant.elevated;
 
   /// Create an elevated button
-  const ElevatedButton({
+  const WxElevatedButton({
     super.key,
     super.severity,
     super.loading = false,
@@ -398,15 +398,15 @@ class ElevatedButton extends WxDrivenButton {
   });
 
   /// Create a block elevated button
-  ElevatedButton.block({
+  WxElevatedButton.block({
     super.key,
     super.severity,
     super.alignChildren,
     super.justifyChildren,
-    super.expanded = true,
-    super.loading = false,
-    super.disabled = false,
-    super.autofocus = false,
+    super.expanded,
+    super.loading,
+    super.disabled,
+    super.autofocus,
     super.focusNode,
     super.onPressed,
     super.eventsController,
@@ -425,10 +425,10 @@ class ElevatedButton extends WxDrivenButton {
   }) : super.block();
 
   /// Create an icon elevated button
-  ElevatedButton.icon({
+  WxElevatedButton.icon({
     super.key,
     super.severity,
-    super.shape = WxButtonShape.circle,
+    super.border,
     super.size,
     super.loading = false,
     super.disabled = false,
@@ -454,17 +454,17 @@ class ElevatedButton extends WxDrivenButton {
 /// Outlined buttons are medium-emphasis buttons.
 /// They contain actions that are important
 /// but aren't the primary action in an app.
-class OutlinedButton extends WxDrivenButton {
+class WxOutlinedButton extends WxDrivenButton {
   @override
   get variant => WxButtonVariant.outlined;
 
   /// Create a outlined button
-  const OutlinedButton({
+  const WxOutlinedButton({
     super.key,
     super.severity,
-    super.loading = false,
-    super.disabled = false,
-    super.autofocus = false,
+    super.loading,
+    super.disabled,
+    super.autofocus,
     super.focusNode,
     super.onPressed,
     super.eventsController,
@@ -483,15 +483,15 @@ class OutlinedButton extends WxDrivenButton {
   });
 
   /// Create a block outlined button
-  OutlinedButton.block({
+  WxOutlinedButton.block({
     super.key,
     super.severity,
     super.alignChildren,
     super.justifyChildren,
-    super.expanded = true,
-    super.loading = false,
-    super.disabled = false,
-    super.autofocus = false,
+    super.expanded,
+    super.loading,
+    super.disabled,
+    super.autofocus,
     super.focusNode,
     super.onPressed,
     super.eventsController,
@@ -510,14 +510,14 @@ class OutlinedButton extends WxDrivenButton {
   }) : super.block();
 
   /// Create an icon outlined button
-  OutlinedButton.icon({
+  WxOutlinedButton.icon({
     super.key,
     super.severity,
-    super.shape = WxButtonShape.circle,
+    super.border,
     super.size,
-    super.loading = false,
-    super.disabled = false,
-    super.autofocus = false,
+    super.loading,
+    super.disabled,
+    super.autofocus,
     super.focusNode,
     super.onPressed,
     super.eventsController,
