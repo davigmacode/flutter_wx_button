@@ -175,7 +175,7 @@ class WxButtonStyle extends WxSheetStyle {
     Color? iconColor,
     double? iconOpacity,
     double? iconSize,
-    bool? inherited,
+    bool? inherits,
     WxButtonStyle? selectedStyle,
     WxButtonStyle? disabledStyle,
     WxButtonStyle? hoveredStyle,
@@ -228,7 +228,7 @@ class WxButtonStyle extends WxSheetStyle {
     );
 
     final hasDrivenStyle = [
-      inherited,
+      inherits,
       selectedStyle,
       focusedStyle,
       hoveredStyle,
@@ -244,7 +244,7 @@ class WxButtonStyle extends WxSheetStyle {
         hoveredStyle: hoveredStyle,
         focusedStyle: focusedStyle,
         pressedStyle: pressedStyle,
-        inherited: inherited,
+        inherits: inherits,
       );
     }
     return style;
@@ -304,7 +304,7 @@ class WxButtonStyle extends WxSheetStyle {
 
     if (other is WxDrivenButtonStyle) {
       style = style.copyWith(
-        inherited: other.inherited,
+        inherits: other.inherits,
         selectedStyle: other.selectedStyle,
         focusedStyle: other.focusedStyle,
         hoveredStyle: other.hoveredStyle,
@@ -330,7 +330,7 @@ class WxDrivenButtonStyle extends WxButtonStyle
     implements DrivenProperty<WxButtonStyle?> {
   /// Whether the resolved style is merged to
   /// the previous resolved style or not
-  final bool? inherited;
+  final bool? inherits;
 
   /// The style to be resolved when
   /// events includes [WxButtonEvent.selected].
@@ -410,7 +410,7 @@ class WxDrivenButtonStyle extends WxButtonStyle
     this.hoveredStyle,
     this.focusedStyle,
     this.pressedStyle,
-    this.inherited,
+    this.inherits,
   });
 
   /// Create a [WxDrivenButtonStyle] with value
@@ -422,13 +422,13 @@ class WxDrivenButtonStyle extends WxButtonStyle
     this.hoveredStyle,
     this.pressedStyle,
     this.disabledStyle,
-    this.inherited,
+    this.inherits,
   }) : super.from();
 
   /// Create a [WxDrivenButtonStyle] from a resolver callback
   WxDrivenButtonStyle.resolver(
     DrivenPropertyResolver<WxButtonStyle?> resolver, {
-    this.inherited = false,
+    this.inherits = false,
   })  : selectedStyle = resolver({WidgetEvent.selected}),
         focusedStyle = resolver({WidgetEvent.focused}),
         hoveredStyle = resolver({WidgetEvent.hovered}),
@@ -451,7 +451,7 @@ class WxDrivenButtonStyle extends WxButtonStyle
     for (var e in driven.entries) {
       if (events.contains(e.key)) {
         final evaluated = evaluate(e.value, events);
-        style = inherited != false
+        style = inherits != false
             ? style.merge(evaluated)
             : WxButtonStyle.from(evaluated);
       }
@@ -506,7 +506,7 @@ class WxDrivenButtonStyle extends WxButtonStyle
     Color? iconColor,
     double? iconOpacity,
     double? iconSize,
-    bool? inherited,
+    bool? inherits,
     WxButtonStyle? selectedStyle,
     WxButtonStyle? disabledStyle,
     WxButtonStyle? hoveredStyle,
@@ -559,7 +559,7 @@ class WxDrivenButtonStyle extends WxButtonStyle
     );
     return WxDrivenButtonStyle.from(
       ancestor,
-      inherited: inherited ?? this.inherited,
+      inherits: inherits ?? this.inherits,
       selectedStyle: this.selectedStyle?.merge(selectedStyle) ?? selectedStyle,
       focusedStyle: this.focusedStyle?.merge(focusedStyle) ?? focusedStyle,
       hoveredStyle: this.hoveredStyle?.merge(hoveredStyle) ?? hoveredStyle,
@@ -571,7 +571,7 @@ class WxDrivenButtonStyle extends WxButtonStyle
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('inherited', inherited));
+    properties.add(DiagnosticsProperty('inherits', inherits));
     properties.add(DiagnosticsProperty('selectedStyle', selectedStyle));
     properties.add(DiagnosticsProperty('focusedStyle', focusedStyle));
     properties.add(DiagnosticsProperty('hoveredStyle', hoveredStyle));
