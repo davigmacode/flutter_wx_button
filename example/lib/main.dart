@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:theme_patrol/theme_patrol.dart';
 import 'package:wx_button/wx_button.dart';
 import 'package:wx_text/wx_text.dart';
+import 'package:widget_event/widget_event.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,21 +18,14 @@ class MyApp extends StatelessWidget {
         'm2': ThemeConfig.withMode(
           description: 'Material 2',
           light: ThemeData(
-            colorScheme: ColorScheme.fromSeed(
-              seedColor: Colors.deepPurple,
-            ),
-            useMaterial3: true,
+            useMaterial3: false,
             extensions: [
               WxButtonThemeM2(context),
             ],
           ),
           dark: ThemeData(
+            useMaterial3: false,
             brightness: Brightness.dark,
-            colorScheme: ColorScheme.fromSeed(
-              seedColor: Colors.deepPurple,
-              brightness: Brightness.dark,
-            ),
-            useMaterial3: true,
             extensions: [
               WxButtonThemeM2(context),
             ],
@@ -40,9 +34,6 @@ class MyApp extends StatelessWidget {
         'm3': ThemeConfig.withMode(
           description: 'Material 3',
           light: ThemeData(
-            colorScheme: ColorScheme.fromSeed(
-              seedColor: Colors.deepPurple,
-            ),
             useMaterial3: true,
             extensions: [
               WxButtonThemeM3(context),
@@ -50,10 +41,6 @@ class MyApp extends StatelessWidget {
           ),
           dark: ThemeData(
             brightness: Brightness.dark,
-            colorScheme: ColorScheme.fromSeed(
-              seedColor: Colors.deepPurple,
-              brightness: Brightness.dark,
-            ),
             useMaterial3: true,
             extensions: [
               WxButtonThemeM3(context),
@@ -88,7 +75,19 @@ class MyHomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               const SizedBox(height: 40),
-              const WxText.displayMedium('WxButton'),
+              const WxText.displayMedium(
+                'WxButton',
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.green,
+                    Colors.blue,
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+                fontWeight: FontWeight.bold,
+                letterSpacing: -2,
+              ),
               const SizedBox(height: 10),
               const ThemePicker(),
               const SizedBox(height: 40),
@@ -110,8 +109,7 @@ class MyHomePage extends StatelessWidget {
                       onPressed: () {},
                       child: const Text('Elevated Button'),
                     ),
-                    WxButton(
-                      variant: WxButtonVariant.elevated,
+                    WxFilledButton(
                       onPressed: () {},
                       child: const Text('Filled Button'),
                     ),
@@ -306,7 +304,7 @@ class MyHomePage extends StatelessWidget {
                     ),
                     WxFilledButton.icon(
                       onPressed: () {},
-                      pressedStyle: WxButtonStyle(
+                      hoveredStyle: WxButtonStyle(
                         border: const RoundedRectangleBorder(),
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -314,19 +312,71 @@ class MyHomePage extends StatelessWidget {
                     ),
                     WxOutlinedButton(
                       onPressed: () {},
-                      enabledStyle: const WxButtonStyle(
+                      style: const WxButtonStyle(
                         border: RoundedRectangleBorder(),
                         borderRadius: BorderRadius.all(Radius.circular(4)),
                         padding: EdgeInsets.zero,
                         clipBehavior: Clip.antiAlias,
                       ),
-                      hoveredStyle: const WxButtonStyle(
+                      pressedStyle: const WxButtonStyle(
                         border: CircleBorder(),
                       ),
                       child: const Icon(Icons.settings),
                     ),
                   ],
                 ),
+              ),
+              const SizedBox(height: 20),
+              Wrapper(
+                title: 'Block',
+                width: 300,
+                child: Column(
+                  children: [
+                    WxTextButton.block(
+                      onPressed: () {},
+                      leading: const Icon(Icons.calendar_month),
+                      trailing: const Icon(Icons.close),
+                      child: const Text('Text'),
+                    ),
+                    WxTonalButton.block(
+                      onPressed: () {},
+                      leading: const Icon(Icons.calendar_month),
+                      trailing: const Icon(Icons.close),
+                      child: const Text('Tonal'),
+                    ),
+                    WxElevatedButton.block(
+                      onPressed: () {},
+                      leading: const Icon(Icons.calendar_month),
+                      trailing: const Icon(Icons.close),
+                      child: const Text('Elevated'),
+                    ),
+                    WxFilledButton.block(
+                      onPressed: () {},
+                      leading: const Icon(Icons.calendar_month),
+                      trailing: const Icon(Icons.close),
+                      child: const Text('Filled'),
+                    ),
+                    WxOutlinedButton.block(
+                      onPressed: () {},
+                      leading: const Icon(Icons.calendar_month),
+                      trailing: const Icon(Icons.close),
+                      child: const Text('Outlined'),
+                    ),
+                  ]
+                      .asMap()
+                      .entries
+                      .map((e) => Padding(
+                            padding: const EdgeInsets.only(bottom: 10),
+                            child: e.value,
+                          ))
+                      .toList(),
+                ),
+              ),
+              const SizedBox(height: 20),
+              const Wrapper(
+                title: 'Loading',
+                width: 300,
+                child: LoadingButtons(),
               ),
               const SizedBox(height: 40),
             ],
@@ -337,19 +387,82 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
+class LoadingButtons extends StatefulWidget {
+  const LoadingButtons({super.key});
+
+  @override
+  State<LoadingButtons> createState() => _LoadingButtonsState();
+}
+
+class _LoadingButtonsState extends State<LoadingButtons> {
+  bool loading = false;
+
+  void setLoading(bool value) {
+    setState(() {
+      loading = value;
+    });
+  }
+
+  void load() {
+    setLoading(true);
+    Future.delayed(const Duration(seconds: 3), () {
+      setLoading(false);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: [
+      WxOutlinedButton.block(
+        onPressed: load,
+        loading: loading,
+        trailing: DrivenWidget.by((events) {
+          return AnimatedSwitcher(
+            duration: const Duration(milliseconds: 200),
+            child: WxButtonEvent.isLoading(events)
+                ? const SizedBox.square(
+                    dimension: 16,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                    ),
+                  )
+                : Container(),
+          );
+        }),
+        child: DrivenWidget.by((events) {
+          return AnimatedSwitcher(
+            duration: const Duration(milliseconds: 200),
+            child: WxButtonEvent.isLoading(events)
+                ? const Text('Loading..', key: ValueKey('loading'))
+                : WxButtonEvent.isHovered(events)
+                    ? const Text('Hovered', key: ValueKey('hovered'))
+                    : const Text(
+                        'Enabled',
+                        key: ValueKey('enabled'),
+                      ),
+          );
+        }),
+      ),
+    ]);
+  }
+}
+
 class Wrapper extends StatelessWidget {
   const Wrapper({
     super.key,
+    this.width,
     required this.title,
     required this.child,
   });
 
+  final double? width;
   final String title;
   final Widget child;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+      width: width,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,

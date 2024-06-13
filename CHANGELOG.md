@@ -1,3 +1,8 @@
-## 0.0.1
+## 1.0.0
 
-* TODO: Describe initial release.
+* Added button widget.
+* Added button style.
+* Added button variant widget.
+* Added button theme widget.
+* Added button theme data.
+* Added button theme preset.

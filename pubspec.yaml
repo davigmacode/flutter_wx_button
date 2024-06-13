@@ -1,21 +1,30 @@
 name: wx_button
-description: "A new Flutter package project."
-version: 0.0.2
-homepage:
+description: Restructure the Flutter Button to allow for simpler styling and theming, ensuring it's not limited to specific platforms.
+version: 1.0.0
+homepage: https://github.com/davigmacode/flutter_wx_button
+
+topics:
+  - ui
+  - button
+  - event-driven
+  - widgetarian
+
+funding:
+ - https://buymeacoffee.com/davigmacode
+ - https://ko-fi.com/davigmacode
 
 environment:
   sdk: '>=2.17.0 <4.0.0'
-  flutter: '>=2.0.0'
+  flutter: '>=3.19.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  widget_event: ^1.3.0
+  widget_event: ^1.3.3
   wx_utils: ^0.0.4
-  wx_sheet: ^3.0.0
-  wx_tile: ^1.0.2
-  wx_anchor:
-    path: ../wx_anchor
+  wx_sheet: ^3.1.1
+  wx_tile: ^1.1.2
+  wx_anchor: ^1.3.0
 
 dev_dependencies:
   flutter_test:
