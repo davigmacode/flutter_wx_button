@@ -33,6 +33,7 @@ class WxButtonThemeDefaults extends WxButtonThemeData {
           ),
         ),
         WxButtonVariant.filled: const WxDrivenButtonStyle(
+          elevation: 1,
           backgroundOpacity: 1,
           borderStyle: BorderStyle.none,
           disabledStyle: WxButtonStyle(
@@ -40,8 +41,8 @@ class WxButtonThemeDefaults extends WxButtonThemeData {
             backgroundAlpha: WxButtonStyle.disabledBackgroundAlpha,
             borderAlpha: WxButtonStyle.disabledBorderAlpha,
           ),
-          hoveredStyle: WxButtonStyle(elevation: 1),
-          pressedStyle: WxButtonStyle(elevation: 0),
+          hoveredStyle: WxButtonStyle(elevation: 2),
+          pressedStyle: WxButtonStyle(elevation: 1),
         ),
         WxButtonVariant.elevated: const WxDrivenButtonStyle(
           elevation: 1,
@@ -244,11 +245,11 @@ class WxButtonThemeM3 extends WxButtonThemeData {
         ),
         WxButtonVariant.tonal: WxButtonStyle(
           backgroundOpacity: .3,
-          backgroundColor: colorScheme.surfaceVariant,
+          backgroundColor: colorScheme.surfaceContainerHighest,
           overlayColor: colorScheme.onSurface,
         ),
         WxButtonVariant.filled: WxButtonStyle(
-          backgroundColor: colorScheme.surfaceVariant,
+          backgroundColor: colorScheme.surfaceContainerHighest,
         ),
         WxButtonVariant.elevated: WxButtonStyle(
           surfaceTint: colorScheme.surfaceTint,

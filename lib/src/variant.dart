@@ -1,119 +1,8 @@
 import 'style.dart';
 import 'widget.dart';
 
-/// Buttons allow users to take actions, and make choices, with a single tap
-class WxDrivenButton extends WxButton {
-  /// The style to be applied when no events occurs.
-  final WxButtonStyle? enabledStyle;
-
-  /// The style to be applied when events includes [WidgetEvent.selected].
-  final WxButtonStyle? selectedStyle;
-
-  /// The style to be applied when events includes [WidgetEvent.focused].
-  final WxButtonStyle? focusedStyle;
-
-  /// The style to be applied when events includes [WidgetEvent.hovered].
-  final WxButtonStyle? hoveredStyle;
-
-  /// The style to be applied when events includes [WidgetEvent.pressed].
-  final WxButtonStyle? pressedStyle;
-
-  /// The style to be applied when events includes [WidgetEvent.disabled].
-  final WxButtonStyle? disabledStyle;
-
-  @override
-  get style => WxDrivenButtonStyle.from(
-        enabledStyle,
-        selectedStyle: selectedStyle,
-        focusedStyle: focusedStyle,
-        hoveredStyle: hoveredStyle,
-        pressedStyle: pressedStyle,
-        disabledStyle: disabledStyle,
-      );
-
-  /// Create a variant button
-  const WxDrivenButton({
-    super.key,
-    super.variant,
-    super.severity,
-    super.loading,
-    super.disabled,
-    super.autofocus,
-    super.focusNode,
-    super.onPressed,
-    super.eventsController,
-    super.curve,
-    super.duration,
-    this.enabledStyle,
-    this.selectedStyle,
-    this.focusedStyle,
-    this.hoveredStyle,
-    this.pressedStyle,
-    this.disabledStyle,
-    super.tooltip,
-    super.leading,
-    super.trailing,
-    required super.child,
-  });
-
-  /// Create a block variant button
-  WxDrivenButton.block({
-    super.key,
-    super.variant,
-    super.severity,
-    super.alignChildren,
-    super.justifyChildren,
-    super.expanded,
-    super.loading,
-    super.disabled,
-    super.autofocus,
-    super.focusNode,
-    super.onPressed,
-    super.eventsController,
-    super.curve,
-    super.duration,
-    this.enabledStyle,
-    this.selectedStyle,
-    this.focusedStyle,
-    this.hoveredStyle,
-    this.pressedStyle,
-    this.disabledStyle,
-    super.tooltip,
-    super.leading,
-    super.trailing,
-    required super.child,
-  }) : super.block();
-
-  /// Create an icon variant button
-  WxDrivenButton.icon({
-    super.key,
-    super.variant,
-    super.severity,
-    super.border,
-    super.size,
-    super.loading,
-    super.disabled,
-    super.autofocus,
-    super.focusNode,
-    super.onPressed,
-    super.eventsController,
-    super.curve,
-    super.duration,
-    this.enabledStyle,
-    this.selectedStyle,
-    this.focusedStyle,
-    this.hoveredStyle,
-    this.pressedStyle,
-    this.disabledStyle,
-    super.tooltip,
-    super.leading,
-    super.trailing,
-    required super.child,
-  }) : super.icon();
-}
-
 /// Text buttons are typically used for less-pronounced actions.
-class WxTextButton extends WxDrivenButton {
+class WxTextButton extends WxButton {
   @override
   get variant => WxButtonVariant.text;
 
@@ -129,7 +18,7 @@ class WxTextButton extends WxDrivenButton {
     super.eventsController,
     super.curve,
     super.duration,
-    super.enabledStyle,
+    super.style,
     super.selectedStyle,
     super.focusedStyle,
     super.hoveredStyle,
@@ -156,7 +45,7 @@ class WxTextButton extends WxDrivenButton {
     super.eventsController,
     super.curve,
     super.duration,
-    super.enabledStyle,
+    super.style,
     super.selectedStyle,
     super.focusedStyle,
     super.hoveredStyle,
@@ -182,7 +71,7 @@ class WxTextButton extends WxDrivenButton {
     super.eventsController,
     super.curve,
     super.duration,
-    super.enabledStyle,
+    super.style,
     super.selectedStyle,
     super.focusedStyle,
     super.hoveredStyle,
@@ -199,7 +88,7 @@ class WxTextButton extends WxDrivenButton {
 /// They’re useful in contexts where a lower-priority button requires slightly more emphasis
 /// than an outline would give, such as "Next" in an onboarding flow.
 /// Tonal buttons use the secondary color mapping.
-class WxTonalButton extends WxDrivenButton {
+class WxTonalButton extends WxButton {
   @override
   get variant => WxButtonVariant.tonal;
 
@@ -215,7 +104,7 @@ class WxTonalButton extends WxDrivenButton {
     super.eventsController,
     super.curve,
     super.duration,
-    super.enabledStyle,
+    super.style,
     super.selectedStyle,
     super.focusedStyle,
     super.hoveredStyle,
@@ -242,7 +131,7 @@ class WxTonalButton extends WxDrivenButton {
     super.eventsController,
     super.curve,
     super.duration,
-    super.enabledStyle,
+    super.style,
     super.selectedStyle,
     super.focusedStyle,
     super.hoveredStyle,
@@ -268,7 +157,7 @@ class WxTonalButton extends WxDrivenButton {
     super.eventsController,
     super.curve,
     super.duration,
-    super.enabledStyle,
+    super.style,
     super.selectedStyle,
     super.focusedStyle,
     super.hoveredStyle,
@@ -284,7 +173,7 @@ class WxTonalButton extends WxDrivenButton {
 /// Filled buttons are high-emphasis,
 /// distinguished by their use of elevation and fill.
 /// They contain actions that are primary to your app.
-class WxFilledButton extends WxDrivenButton {
+class WxFilledButton extends WxButton {
   @override
   get variant => WxButtonVariant.filled;
 
@@ -300,7 +189,7 @@ class WxFilledButton extends WxDrivenButton {
     super.eventsController,
     super.curve,
     super.duration,
-    super.enabledStyle,
+    super.style,
     super.selectedStyle,
     super.focusedStyle,
     super.hoveredStyle,
@@ -327,7 +216,7 @@ class WxFilledButton extends WxDrivenButton {
     super.eventsController,
     super.curve,
     super.duration,
-    super.enabledStyle,
+    super.style,
     super.selectedStyle,
     super.focusedStyle,
     super.hoveredStyle,
@@ -353,7 +242,7 @@ class WxFilledButton extends WxDrivenButton {
     super.eventsController,
     super.curve,
     super.duration,
-    super.enabledStyle,
+    super.style,
     super.selectedStyle,
     super.focusedStyle,
     super.hoveredStyle,
@@ -369,7 +258,7 @@ class WxFilledButton extends WxDrivenButton {
 /// Elevated buttons are high-emphasis,
 /// distinguished by their use of elevation and fill.
 /// They contain actions that are primary to your app.
-class WxElevatedButton extends WxDrivenButton {
+class WxElevatedButton extends WxButton {
   @override
   get variant => WxButtonVariant.elevated;
 
@@ -385,7 +274,7 @@ class WxElevatedButton extends WxDrivenButton {
     super.eventsController,
     super.curve,
     super.duration,
-    super.enabledStyle,
+    super.style,
     super.selectedStyle,
     super.focusedStyle,
     super.hoveredStyle,
@@ -412,7 +301,7 @@ class WxElevatedButton extends WxDrivenButton {
     super.eventsController,
     super.curve,
     super.duration,
-    super.enabledStyle,
+    super.style,
     super.selectedStyle,
     super.focusedStyle,
     super.hoveredStyle,
@@ -438,7 +327,7 @@ class WxElevatedButton extends WxDrivenButton {
     super.eventsController,
     super.curve,
     super.duration,
-    super.enabledStyle,
+    super.style,
     super.selectedStyle,
     super.focusedStyle,
     super.hoveredStyle,
@@ -454,7 +343,7 @@ class WxElevatedButton extends WxDrivenButton {
 /// Outlined buttons are medium-emphasis buttons.
 /// They contain actions that are important
 /// but aren't the primary action in an app.
-class WxOutlinedButton extends WxDrivenButton {
+class WxOutlinedButton extends WxButton {
   @override
   get variant => WxButtonVariant.outlined;
 
@@ -470,7 +359,7 @@ class WxOutlinedButton extends WxDrivenButton {
     super.eventsController,
     super.curve,
     super.duration,
-    super.enabledStyle,
+    super.style,
     super.selectedStyle,
     super.focusedStyle,
     super.hoveredStyle,
@@ -497,7 +386,7 @@ class WxOutlinedButton extends WxDrivenButton {
     super.eventsController,
     super.curve,
     super.duration,
-    super.enabledStyle,
+    super.style,
     super.selectedStyle,
     super.focusedStyle,
     super.hoveredStyle,
@@ -523,7 +412,7 @@ class WxOutlinedButton extends WxDrivenButton {
     super.eventsController,
     super.curve,
     super.duration,
-    super.enabledStyle,
+    super.style,
     super.selectedStyle,
     super.focusedStyle,
     super.hoveredStyle,

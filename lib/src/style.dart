@@ -50,6 +50,7 @@ class WxButtonStyle extends WxSheetStyle {
     super.clipBehavior,
     super.overlayDisabled,
     super.overlayColor,
+    super.overlayOpacity,
     super.elevationColor,
     super.surfaceTint,
     super.elevation,
@@ -102,11 +103,11 @@ class WxButtonStyle extends WxSheetStyle {
   /// Creates a copy of this [WxButtonStyle] but with
   /// [padding] is [EdgeInsets.zero] and squared size.
   WxButtonStyle icon({
-    OutlinedBorder border = const CircleBorder(),
+    OutlinedBorder? border,
     double? size,
   }) {
     return copyWith(
-      border: border,
+      border: border ?? const CircleBorder(),
       width: size ?? defaults.height,
       height: size ?? defaults.height,
       padding: EdgeInsets.zero,
@@ -122,7 +123,9 @@ class WxButtonStyle extends WxSheetStyle {
   }) {
     return copyWith(
       width: double.infinity,
-      foregroundExpanded: expanded,
+      minWidth: double.infinity,
+      maxWidth: double.infinity,
+      foregroundExpanded: expanded ?? true,
       foregroundAlign: alignChildren,
       foregroundJustify: justifyChildren,
     );
@@ -146,6 +149,7 @@ class WxButtonStyle extends WxSheetStyle {
     Clip? clipBehavior,
     bool? overlayDisabled,
     Color? overlayColor,
+    double? overlayOpacity,
     Color? elevationColor,
     Color? surfaceTint,
     double? elevation,
@@ -196,6 +200,7 @@ class WxButtonStyle extends WxSheetStyle {
       clipBehavior: clipBehavior ?? this.clipBehavior,
       overlayDisabled: overlayDisabled ?? this.overlayDisabled,
       overlayColor: overlayColor ?? this.overlayColor,
+      overlayOpacity: overlayOpacity ?? this.overlayOpacity,
       elevationColor: elevationColor ?? this.elevationColor,
       surfaceTint: surfaceTint ?? this.surfaceTint,
       elevation: elevation ?? this.elevation,
@@ -271,6 +276,7 @@ class WxButtonStyle extends WxSheetStyle {
       clipBehavior: other.clipBehavior,
       overlayDisabled: other.overlayDisabled,
       overlayColor: other.overlayColor,
+      overlayOpacity: other.overlayOpacity,
       elevationColor: other.elevationColor,
       surfaceTint: other.surfaceTint,
       elevation: other.elevation,
@@ -376,6 +382,7 @@ class WxDrivenButtonStyle extends WxButtonStyle
     super.clipBehavior,
     super.overlayDisabled,
     super.overlayColor,
+    super.overlayOpacity,
     super.elevationColor,
     super.surfaceTint,
     super.elevation,
@@ -477,6 +484,7 @@ class WxDrivenButtonStyle extends WxButtonStyle
     Clip? clipBehavior,
     bool? overlayDisabled,
     Color? overlayColor,
+    double? overlayOpacity,
     Color? elevationColor,
     Color? surfaceTint,
     double? elevation,
@@ -527,6 +535,7 @@ class WxDrivenButtonStyle extends WxButtonStyle
       clipBehavior: clipBehavior,
       overlayDisabled: overlayDisabled,
       overlayColor: overlayColor,
+      overlayOpacity: overlayOpacity,
       elevationColor: elevationColor,
       surfaceTint: surfaceTint,
       elevation: elevation,

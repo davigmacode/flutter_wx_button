@@ -1,8 +1,7 @@
 import 'dart:ui';
+import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/widgets.dart';
 import 'package:widget_event/widget_event.dart';
-import 'package:wx_utils/wx_utils.dart';
 import 'package:wx_sheet/wx_sheet.dart';
 import 'package:wx_tile/wx_tile.dart';
 import 'package:wx_anchor/wx_anchor.dart';
@@ -261,7 +260,6 @@ class WxButtonRenderState extends State<WxButtonRender>
   }
 
   void onTapCancel() async {
-    print('onTapCancel');
     if (pointerDeviceKind == PointerDeviceKind.touch) {
       await Future.delayed(duration);
     }
@@ -270,7 +268,6 @@ class WxButtonRenderState extends State<WxButtonRender>
   }
 
   void onTapUp(TapUpDetails details) async {
-    print('onTapUp');
     if (details.kind == PointerDeviceKind.touch) {
       await Future.delayed(duration);
     }
@@ -279,7 +276,6 @@ class WxButtonRenderState extends State<WxButtonRender>
   }
 
   void onTapDown(TapDownDetails details) {
-    print('onTapDown');
     pointerDeviceKind = details.kind;
     widgetEvents.toggle(WxButtonEvent.pressed, true);
   }
@@ -324,9 +320,8 @@ class WxButtonRenderState extends State<WxButtonRender>
   void didChangeWidgetEvents() {
     setStyle();
     SchedulerBinding.instance.scheduleFrameCallback((_) {
-      setState(() {});
+      super.didChangeWidgetEvents();
     });
-    // super.didChangeWidgetEvents();
   }
 
   @override
@@ -346,16 +341,15 @@ class WxButtonRenderState extends State<WxButtonRender>
         wrapper: (context, sheetTheme, child) {
           final sheetStyle = sheetTheme.style;
 
-          final overlayColor = style.overlayColor ??
-              WxColors.onSurface(sheetStyle.backgroundColor);
           child = WxAnchor(
             curve: curve,
             duration: duration,
             disabled: !widget.canTap,
             autofocus: widget.autofocus,
             focusNode: widget.focusNode,
-            overlayColor: overlayColor,
-            overlayDisabled: style.overlayDisabled,
+            overlayColor: sheetStyle.overlayColor,
+            overlayOpacity: sheetStyle.overlayOpacity,
+            overlayDisabled: sheetStyle.overlayDisabled,
             borderRadius: sheetStyle.borderRadius,
             onTap: onTap,
             onTapCancel: onTapCancel,
@@ -371,6 +365,7 @@ class WxButtonRenderState extends State<WxButtonRender>
             duration: sheetTheme.duration,
             data: WxTileThemeData(
               style: WxTileStyle(
+                childExpanded: sheetStyle.foregroundExpanded,
                 crossAxisAlignment: sheetStyle.foregroundAlign,
                 mainAxisAlignment: sheetStyle.foregroundJustify,
                 inline: sheetStyle.width != double.infinity,
@@ -400,9 +395,12 @@ class WxButtonRenderState extends State<WxButtonRender>
                     widgetEvents.value,
                   )
                 : null,
-            child: DrivenWidget.evaluate(
-              widget.child,
-              widgetEvents.value,
+            child: DefaultTextStyle.merge(
+              textAlign: TextAlign.center,
+              child: DrivenWidget.evaluate(
+                widget.child,
+                widgetEvents.value,
+              ),
             ),
           ),
         ),

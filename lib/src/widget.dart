@@ -19,6 +19,11 @@ class WxButton extends StatelessWidget {
     this.curve,
     this.duration,
     this.style,
+    this.selectedStyle,
+    this.focusedStyle,
+    this.hoveredStyle,
+    this.pressedStyle,
+    this.disabledStyle,
     this.variant,
     this.severity,
     this.tooltip,
@@ -32,7 +37,7 @@ class WxButton extends StatelessWidget {
     super.key,
     CrossAxisAlignment? alignChildren,
     MainAxisAlignment? justifyChildren,
-    bool expanded = true,
+    bool? expanded,
     this.loading = false,
     this.disabled = false,
     this.autofocus = false,
@@ -44,6 +49,11 @@ class WxButton extends StatelessWidget {
     this.variant,
     this.severity,
     this.style,
+    this.selectedStyle,
+    this.focusedStyle,
+    this.hoveredStyle,
+    this.pressedStyle,
+    this.disabledStyle,
     this.tooltip,
     this.leading,
     this.trailing,
@@ -57,7 +67,7 @@ class WxButton extends StatelessWidget {
   /// Create an icon button
   WxButton.icon({
     super.key,
-    OutlinedBorder border = const CircleBorder(),
+    OutlinedBorder? border,
     double? size,
     this.loading = false,
     this.disabled = false,
@@ -70,6 +80,11 @@ class WxButton extends StatelessWidget {
     this.variant,
     this.severity,
     this.style,
+    this.selectedStyle,
+    this.focusedStyle,
+    this.hoveredStyle,
+    this.pressedStyle,
+    this.disabledStyle,
     this.tooltip,
     this.leading,
     this.trailing,
@@ -115,6 +130,21 @@ class WxButton extends StatelessWidget {
   /// {@macro widgetarian.button.style}
   final WxButtonStyle? style;
 
+  /// The style to be applied when events includes [WidgetEvent.selected].
+  final WxButtonStyle? selectedStyle;
+
+  /// The style to be applied when events includes [WidgetEvent.focused].
+  final WxButtonStyle? focusedStyle;
+
+  /// The style to be applied when events includes [WidgetEvent.hovered].
+  final WxButtonStyle? hoveredStyle;
+
+  /// The style to be applied when events includes [WidgetEvent.pressed].
+  final WxButtonStyle? pressedStyle;
+
+  /// The style to be applied when events includes [WidgetEvent.disabled].
+  final WxButtonStyle? disabledStyle;
+
   /// {@macro widgetarian.button.eventsController}
   final WxButtonEventController? eventsController;
 
@@ -128,8 +158,14 @@ class WxButton extends StatelessWidget {
   final WxButtonStyle? additionalStyle;
 
   /// The [style] merged with [additionalStyle]
-  get effectiveStyle =>
-      const WxDrivenButtonStyle().merge(style).merge(additionalStyle);
+  get effectiveStyle => WxDrivenButtonStyle.from(
+        style,
+        selectedStyle: selectedStyle,
+        focusedStyle: focusedStyle,
+        hoveredStyle: hoveredStyle,
+        pressedStyle: pressedStyle,
+        disabledStyle: disabledStyle,
+      ).merge(additionalStyle);
 
   @override
   Widget build(BuildContext context) {
@@ -159,6 +195,7 @@ class WxButton extends StatelessWidget {
     properties.add(DiagnosticsProperty<bool>('loading', loading));
     properties.add(DiagnosticsProperty<bool>('disabled', disabled));
     properties.add(DiagnosticsProperty<bool>('autofocus', autofocus));
-    properties.add(DiagnosticsProperty<WxButtonStyle?>('style', style));
+    properties.add(
+        DiagnosticsProperty<WxButtonStyle?>('effectiveStyle', effectiveStyle));
   }
 }
