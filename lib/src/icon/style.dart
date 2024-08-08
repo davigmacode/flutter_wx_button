@@ -44,8 +44,11 @@ class WxIconButtonStyle extends WxSheetStyle {
     super.iconSize,
   }) : super.circle();
 
-  /// Create a [WxIconButtonStyle] from another style
-  WxIconButtonStyle.from(super.other) : super.from();
+  /// Create a [WxIconButtonStyle] from another [WxIconButtonStyle]
+  WxIconButtonStyle.from(WxIconButtonStyle? super.other) : super.from();
+
+  /// Create a [WxIconButtonStyle] from another [WxSheetStyle]
+  WxIconButtonStyle.fromAncestor(super.other) : super.from();
 
   /// Creates a copy of this [WxIconButtonStyle] but with
   /// the given fields replaced with the new values.
@@ -188,19 +191,20 @@ class WxIconButtonStyle extends WxSheetStyle {
       titleWeight: titleWeight,
       subtitleWeight: subtitleWeight,
     );
-    return WxIconButtonStyle.from(ancestor);
+    return WxIconButtonStyle.fromAncestor(ancestor);
   }
 
   @override
   WxIconButtonStyle merge(other) {
+    if (other == null) return this;
     final ancestor = super.merge(other);
-    return WxIconButtonStyle.from(ancestor);
+    return WxIconButtonStyle.fromAncestor(ancestor);
   }
 
   /// Linearly interpolate between two [WxIconButtonStyle] objects.
   static WxIconButtonStyle? lerp(
       WxIconButtonStyle? a, WxIconButtonStyle? b, double t) {
     final ancestor = WxSheetStyle.lerp(a, b, t);
-    return WxIconButtonStyle.from(ancestor);
+    return WxIconButtonStyle.fromAncestor(ancestor);
   }
 }

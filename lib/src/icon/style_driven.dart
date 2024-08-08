@@ -86,13 +86,13 @@ class WxDrivenIconButtonStyle extends WxIconButtonStyle
 
   /// Create a [WxDrivenIconButtonStyle] with value
   /// from another [WxDrivenIconButtonStyle].
-  WxDrivenIconButtonStyle.from(WxDrivenIconButtonStyle super.other)
-      : focusedStyle = other.focusedStyle,
-        hoveredStyle = other.hoveredStyle,
-        pressedStyle = other.pressedStyle,
-        loadingStyle = other.loadingStyle,
-        disabledStyle = other.disabledStyle,
-        inherits = other.inherits,
+  WxDrivenIconButtonStyle.from(WxDrivenIconButtonStyle? super.other)
+      : focusedStyle = other?.focusedStyle,
+        hoveredStyle = other?.hoveredStyle,
+        pressedStyle = other?.pressedStyle,
+        loadingStyle = other?.loadingStyle,
+        disabledStyle = other?.disabledStyle,
+        inherits = other?.inherits,
         super.from();
 
   /// Create a [WxDrivenIconButtonStyle] from a resolver callback
@@ -104,7 +104,7 @@ class WxDrivenIconButtonStyle extends WxIconButtonStyle
         pressedStyle = resolver({WxSheetEvent.pressed}),
         loadingStyle = resolver({WxSheetEvent.loading}),
         disabledStyle = resolver({WxSheetEvent.disabled}),
-        super.from(resolver({}));
+        super.fromAncestor(resolver({}));
 
   /// Resolves the value for the given set of events
   /// if `value` is an event driven [WxIconButtonStyle],
@@ -120,7 +120,7 @@ class WxDrivenIconButtonStyle extends WxIconButtonStyle
   resolveInherits(accumulator, style) {
     return inherits != false
         ? accumulator.merge(style)
-        : WxIconButtonStyle.from(style);
+        : WxIconButtonStyle.fromAncestor(style);
   }
 
   /// Creates a copy of this [WxDrivenIconButtonStyle] but with
@@ -283,6 +283,7 @@ class WxDrivenIconButtonStyle extends WxIconButtonStyle
 
   @override
   WxDrivenIconButtonStyle merge(other) {
+    if (other == null) return this;
     final ancestor = super.merge(other);
     final result = WxDrivenIconButtonStyle.fromAncestor(
       ancestor,
@@ -306,11 +307,11 @@ class WxDrivenIconButtonStyle extends WxIconButtonStyle
     if (other is WxDrivenSheetStyle) {
       return result.copyWith(
         inherits: other.inherits,
-        focusedStyle: WxIconButtonStyle.from(other.focusedStyle),
-        hoveredStyle: WxIconButtonStyle.from(other.hoveredStyle),
-        pressedStyle: WxIconButtonStyle.from(other.pressedStyle),
-        loadingStyle: WxIconButtonStyle.from(other.loadingStyle),
-        disabledStyle: WxIconButtonStyle.from(other.disabledStyle),
+        focusedStyle: WxIconButtonStyle.fromAncestor(other.focusedStyle),
+        hoveredStyle: WxIconButtonStyle.fromAncestor(other.hoveredStyle),
+        pressedStyle: WxIconButtonStyle.fromAncestor(other.pressedStyle),
+        loadingStyle: WxIconButtonStyle.fromAncestor(other.loadingStyle),
+        disabledStyle: WxIconButtonStyle.fromAncestor(other.disabledStyle),
       );
     }
     return result;

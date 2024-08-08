@@ -113,13 +113,13 @@ class WxDrivenButtonStyle extends WxButtonStyle
 
   /// Create a [WxDrivenButtonStyle] with value
   /// from another [WxDrivenButtonStyle].
-  WxDrivenButtonStyle.from(WxDrivenButtonStyle super.other)
-      : focusedStyle = other.focusedStyle,
-        hoveredStyle = other.hoveredStyle,
-        pressedStyle = other.pressedStyle,
-        loadingStyle = other.loadingStyle,
-        disabledStyle = other.disabledStyle,
-        inherits = other.inherits,
+  WxDrivenButtonStyle.from(WxDrivenButtonStyle? super.other)
+      : focusedStyle = other?.focusedStyle,
+        hoveredStyle = other?.hoveredStyle,
+        pressedStyle = other?.pressedStyle,
+        loadingStyle = other?.loadingStyle,
+        disabledStyle = other?.disabledStyle,
+        inherits = other?.inherits,
         super.from();
 
   /// Create a [WxDrivenButtonStyle] from a resolver callback
@@ -131,7 +131,7 @@ class WxDrivenButtonStyle extends WxButtonStyle
         pressedStyle = resolver({WxSheetEvent.pressed}),
         loadingStyle = resolver({WxSheetEvent.loading}),
         disabledStyle = resolver({WxSheetEvent.disabled}),
-        super.from(resolver({}));
+        super.fromAncestor(resolver({}));
 
   /// Resolves the value for the given set of events
   /// if `value` is an event driven [WxButtonStyle],
@@ -310,6 +310,7 @@ class WxDrivenButtonStyle extends WxButtonStyle
 
   @override
   WxDrivenButtonStyle merge(other) {
+    if (other == null) return this;
     final ancestor = super.merge(other);
     final result = WxDrivenButtonStyle.fromAncestor(
       ancestor,
@@ -333,11 +334,11 @@ class WxDrivenButtonStyle extends WxButtonStyle
     if (other is WxDrivenSheetStyle) {
       return result.copyWith(
         inherits: other.inherits,
-        focusedStyle: WxButtonStyle.from(other.focusedStyle),
-        hoveredStyle: WxButtonStyle.from(other.hoveredStyle),
-        pressedStyle: WxButtonStyle.from(other.pressedStyle),
-        loadingStyle: WxButtonStyle.from(other.loadingStyle),
-        disabledStyle: WxButtonStyle.from(other.disabledStyle),
+        focusedStyle: WxButtonStyle.fromAncestor(other.focusedStyle),
+        hoveredStyle: WxButtonStyle.fromAncestor(other.hoveredStyle),
+        pressedStyle: WxButtonStyle.fromAncestor(other.pressedStyle),
+        loadingStyle: WxButtonStyle.fromAncestor(other.loadingStyle),
+        disabledStyle: WxButtonStyle.fromAncestor(other.disabledStyle),
       );
     }
     return result;

@@ -71,8 +71,11 @@ class WxButtonStyle extends WxSheetStyle {
     super.subtitleWeight,
   });
 
-  /// Create a [WxButtonStyle] from another style
-  WxButtonStyle.from(super.other) : super.from();
+  /// Create a [WxButtonStyle] from another [WxButtonStyle]
+  WxButtonStyle.from(WxButtonStyle? super.other) : super.from();
+
+  /// Create a [WxButtonStyle] from another [WxSheetStyle]
+  WxButtonStyle.fromAncestor(super.other) : super.from();
 
   /// Creates a copy of this [WxButtonStyle] but with
   /// the given fields replaced with the new values.
@@ -215,18 +218,19 @@ class WxButtonStyle extends WxSheetStyle {
       titleWeight: titleWeight,
       subtitleWeight: subtitleWeight,
     );
-    return WxButtonStyle.from(ancestor);
+    return WxButtonStyle.fromAncestor(ancestor);
   }
 
   @override
   WxButtonStyle merge(other) {
+    if (other == null) return this;
     final ancestor = super.merge(other);
-    return WxButtonStyle.from(ancestor);
+    return WxButtonStyle.fromAncestor(ancestor);
   }
 
   /// Linearly interpolate between two [WxButtonStyle] objects.
   static WxButtonStyle? lerp(WxButtonStyle? a, WxButtonStyle? b, double t) {
     final ancestor = WxSheetStyle.lerp(a, b, t);
-    return WxButtonStyle.from(ancestor);
+    return WxButtonStyle.fromAncestor(ancestor);
   }
 }

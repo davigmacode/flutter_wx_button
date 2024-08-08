@@ -1,7 +1,8 @@
-import 'package:flutter/widgets.dart';
 import 'package:wx_sheet/wx_sheet.dart';
 import 'theme.dart';
 import 'theme_data.dart';
+import 'style_driven.dart';
+import 'style.dart';
 
 /// The sheet widget serves as the building block for many Widgetarian components,
 /// providing a base layer for customization.
@@ -71,7 +72,23 @@ class WxIconButton extends WxSheet<WxIconButtonThemeData> {
   }) : super.circle();
 
   @override
-  WxIconButtonThemeData getTheme(BuildContext context) {
+  WxIconButtonStyle get effectiveStyle {
+    return const WxDrivenIconButtonStyle().merge(super.effectiveStyle);
+  }
+
+  @override
+  WxIconButtonThemeData getTheme(context) {
     return WxIconButtonTheme.of(context);
+  }
+
+  @override
+  WxIconButtonStyle? getInheritedStyle(context, inherits) {
+    if (inherits) {
+      final parentStyle = getParentStyle(context);
+      return const WxDrivenIconButtonStyle()
+          .merge(parentStyle)
+          .merge(effectiveStyle);
+    }
+    return effectiveStyle;
   }
 }
