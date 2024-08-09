@@ -10,7 +10,7 @@ packages:
     source: hosted
     version: "1.0.4"
   animated_repeatable:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: animated_repeatable
       sha256: "6c6cbd7f1fab8767c49385563443d58b59c8fe25ae29728fba3b812abd7854a7"
@@ -252,10 +252,10 @@ packages:
     dependency: transitive
     description:
       name: wx_anchor
-      sha256: bec4df3cc6f2e19e41785889a435b05ed05447b1c03587f60c83cb97c2aca898
+      sha256: "811bea507974faed1d6244f75d451d3d300bf0d74cafbd480ec52a1431ce8389"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.2"
+    version: "2.1.0"
   wx_box:
     dependency: transitive
     description:
@@ -275,10 +275,10 @@ packages:
     dependency: transitive
     description:
       name: wx_sheet
-      sha256: "085a466468105951c7281c69b495d5d3b46498359cda89890eb41f7a8b4749be"
+      sha256: e0cd48289bd241d57ebfb53484c1f528beed490390eb8fb9dcb84f9d39177605
       url: "https://pub.dev"
     source: hosted
-    version: "4.1.1"
+    version: "4.3.0"
   wx_text:
     dependency: "direct main"
     description:

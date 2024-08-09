@@ -1,3 +1,4 @@
+import 'package:animated_repeatable/animated_repeatable.dart';
 import 'package:flutter/material.dart';
 import 'package:wx_button/wx_button.dart';
 import 'package:wx_button/wx_event.dart';
@@ -8,18 +9,52 @@ class SampleDriven extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Wrapper(
-      title: 'Driven Widget',
+    return Wrapper(
+      title: 'Mix Appearance and Widget on Event Change',
       child: SizedBox(
         width: 300,
         child: Column(
           children: [
-            LoadingButton(
-              trailing: DrivenSpinner(width: 4),
+            const LoadingButton(
+              variant: WxButtonVariant.filled,
+              trailing: DrivenSpinner(width: 3, size: 14),
+              child: Text('Trailing Spinner'),
             ),
-            SizedBox(height: 10),
-            LoadingButton(
-              leading: DrivenSpinner(color: Colors.red),
+            const SizedBox(height: 15),
+            const LoadingButton(
+              leading: DrivenSpinner(),
+              variant: WxButtonVariant.outlined,
+              hoveredStyle: WxButtonStyle(
+                variant: WxButtonVariant.tonal,
+                severity: Colors.amber,
+              ),
+              loadingStyle: WxButtonStyle(
+                variant: WxButtonVariant.text,
+                severity: Colors.red,
+              ),
+              child: Text('Leading Spinner'),
+            ),
+            const SizedBox(height: 15),
+            LoadingIconButton(
+              variant: WxButtonVariant.tonal,
+              hoveredStyle: const WxButtonStyle(
+                variant: WxButtonVariant.filled,
+                severity: Colors.green,
+              ),
+              loadingStyle: const WxButtonStyle(
+                variant: WxButtonVariant.outlined,
+                severity: Colors.red,
+              ),
+              child: DrivenChild.by((events) {
+                return AnimatedRepeatable(
+                  pause: !WxButtonEvent.isHovered(events),
+                  duration: const Duration(milliseconds: 1500),
+                  transition: AnimatedRepeatable.spin,
+                  child: WxButtonEvent.isLoading(events)
+                      ? const DrivenSpinner(size: 14)
+                      : const Icon(Icons.settings),
+                );
+              }),
             ),
           ],
         ),
@@ -31,12 +66,20 @@ class SampleDriven extends StatelessWidget {
 class LoadingButton extends StatefulWidget {
   const LoadingButton({
     super.key,
+    this.variant = WxButtonVariant.outlined,
+    this.hoveredStyle,
+    this.loadingStyle,
     this.leading,
     this.trailing,
+    required this.child,
   });
 
+  final WxButtonVariant variant;
+  final WxButtonStyle? hoveredStyle;
+  final WxButtonStyle? loadingStyle;
   final Widget? leading;
   final Widget? trailing;
+  final Widget child;
 
   @override
   State<LoadingButton> createState() => _LoadingButtonState();
@@ -62,22 +105,70 @@ class _LoadingButtonState extends State<LoadingButton> {
 
   @override
   Widget build(BuildContext context) {
-    return DrivenSpinnerTheme.merge(
-      width: 2,
-      child: WxButton(
-        variant: WxButtonVariant.outlined,
-        onPressed: load,
-        loading: loading,
-        leading: widget.leading,
-        trailing: widget.trailing,
-        loadingStyle: const WxButtonStyle(borderColor: Colors.red),
-        child: const DrivenSwitcher(
-          Text('Enabled'),
-          atHovered: Text('Hovered'),
-          atPressed: Text('Pressed'),
-          atLoading: Text('Loading'),
-        ),
+    return WxButton(
+      variant: widget.variant,
+      onPressed: load,
+      loading: loading,
+      leading: widget.leading,
+      trailing: widget.trailing,
+      hoveredStyle: widget.hoveredStyle,
+      loadingStyle: widget.loadingStyle,
+      spacing: 12,
+      child: DrivenSwitcher(
+        widget.child,
+        atHovered: const Text('Button Hovered'),
+        atPressed: const Text('Button Pressed'),
+        atLoading: const Text('Button Loading'),
       ),
+    );
+  }
+}
+
+class LoadingIconButton extends StatefulWidget {
+  const LoadingIconButton({
+    super.key,
+    this.variant = WxButtonVariant.outlined,
+    this.hoveredStyle,
+    this.loadingStyle,
+    required this.child,
+  });
+
+  final WxButtonVariant variant;
+  final WxButtonStyle? hoveredStyle;
+  final WxButtonStyle? loadingStyle;
+  final Widget child;
+
+  @override
+  State<LoadingIconButton> createState() => _LoadingIconButtonState();
+}
+
+class _LoadingIconButtonState extends State<LoadingIconButton> {
+  bool loading = false;
+
+  void setLoading(bool value) {
+    if (mounted) {
+      setState(() {
+        loading = value;
+      });
+    }
+  }
+
+  void load() {
+    setLoading(true);
+    Future.delayed(const Duration(seconds: 3), () {
+      setLoading(false);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return WxIconButton(
+      variant: widget.variant,
+      onPressed: load,
+      loading: loading,
+      hoveredStyle: widget.hoveredStyle,
+      loadingStyle: widget.loadingStyle,
+      child: widget.child,
     );
   }
 }
