@@ -34,6 +34,8 @@ class WxIconButtonThemeData extends WxSheetThemeData<WxIconButtonThemeData> {
     disabled,
     inherits,
     mouseCursor,
+    leading,
+    trailing,
   }) {
     final ancestor = super.copyWith(
       animated: animated,
@@ -47,6 +49,8 @@ class WxIconButtonThemeData extends WxSheetThemeData<WxIconButtonThemeData> {
       disabled: disabled,
       inherits: inherits,
       mouseCursor: mouseCursor,
+      leading: leading,
+      trailing: trailing,
     );
     return WxIconButtonThemeData.from(ancestor);
   }

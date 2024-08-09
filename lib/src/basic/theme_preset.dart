@@ -20,6 +20,8 @@ abstract class WxButtonThemePreset extends WxButtonThemeData
       const WxDrivenButtonStyle().merge(super.style).copyWith(
             direction: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: 16),
+            spinnerSize: 16,
+            spinnerWidth: 2,
           );
 }
 

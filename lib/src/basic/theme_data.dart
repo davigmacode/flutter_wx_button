@@ -14,6 +14,8 @@ class WxButtonThemeData extends WxSheetThemeData<WxButtonThemeData> {
     super.disabled,
     super.inherits,
     super.mouseCursor,
+    super.leading,
+    super.trailing,
   }) : super(animated: true);
 
   WxButtonThemeData.from([
@@ -34,6 +36,8 @@ class WxButtonThemeData extends WxSheetThemeData<WxButtonThemeData> {
     disabled,
     inherits,
     mouseCursor,
+    leading,
+    trailing,
   }) {
     final ancestor = super.copyWith(
       animated: animated,
@@ -47,6 +51,8 @@ class WxButtonThemeData extends WxSheetThemeData<WxButtonThemeData> {
       disabled: disabled,
       inherits: inherits,
       mouseCursor: mouseCursor,
+      leading: leading,
+      trailing: trailing,
     );
     return WxButtonThemeData.from(ancestor);
   }

@@ -48,6 +48,8 @@ class WxDrivenButtonStyle extends WxButtonStyle
     super.clipBehavior,
     super.overlayColor,
     super.overlayOpacity,
+    super.overlayShape,
+    super.overlayExtent,
     super.surfaceTint,
     super.elevationColor,
     super.elevation,
@@ -81,6 +83,11 @@ class WxDrivenButtonStyle extends WxButtonStyle
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
+    super.spinnerColor,
+    super.spinnerBackgroundColor,
+    super.spinnerSize,
+    super.spinnerWidth,
+    super.spinnerRounded,
     super.titleStyle,
     super.subtitleStyle,
     super.titleSize,
@@ -136,11 +143,11 @@ class WxDrivenButtonStyle extends WxButtonStyle
   /// Resolves the value for the given set of events
   /// if `value` is an event driven [WxButtonStyle],
   /// otherwise returns the value itself.
-  static WxButtonStyle? evaluate(
-    WxButtonStyle? value,
+  static WxButtonStyle evaluate(
+    WxButtonStyle value,
     Set<WxSheetEvent> events,
   ) {
-    return WxDrivenSheetStyle.evaluate<WxButtonStyle>(value, events);
+    return WxDrivenSheetStyle.evaluate(value, events);
   }
 
   @override
@@ -178,6 +185,8 @@ class WxDrivenButtonStyle extends WxButtonStyle
     clipBehavior,
     overlayColor,
     overlayOpacity,
+    overlayShape,
+    overlayExtent,
     surfaceTint,
     elevationColor,
     elevation,
@@ -211,6 +220,11 @@ class WxDrivenButtonStyle extends WxButtonStyle
     iconColor,
     iconOpacity,
     iconSize,
+    spinnerColor,
+    spinnerBackgroundColor,
+    spinnerSize,
+    spinnerWidth,
+    spinnerRounded,
     titleStyle,
     subtitleStyle,
     titleSize,
@@ -253,6 +267,8 @@ class WxDrivenButtonStyle extends WxButtonStyle
       clipBehavior: clipBehavior,
       overlayColor: overlayColor,
       overlayOpacity: overlayOpacity,
+      overlayShape: overlayShape,
+      overlayExtent: overlayExtent,
       surfaceTint: surfaceTint,
       elevationColor: elevationColor,
       elevation: elevation,
@@ -286,6 +302,11 @@ class WxDrivenButtonStyle extends WxButtonStyle
       iconColor: iconColor,
       iconOpacity: iconOpacity,
       iconSize: iconSize,
+      spinnerColor: spinnerColor,
+      spinnerBackgroundColor: spinnerBackgroundColor,
+      spinnerSize: spinnerSize,
+      spinnerWidth: spinnerWidth,
+      spinnerRounded: spinnerRounded,
       titleStyle: titleStyle,
       subtitleStyle: subtitleStyle,
       titleSize: titleSize,

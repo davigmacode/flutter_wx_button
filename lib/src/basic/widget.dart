@@ -38,6 +38,8 @@ class WxButton extends WxSheet<WxButtonThemeData> {
     super.overlay,
     super.overlayColor,
     super.overlayOpacity,
+    super.overlayShape,
+    super.overlayExtent,
     super.elevationColor,
     super.elevation,
     super.tileAlign,
@@ -70,6 +72,11 @@ class WxButton extends WxSheet<WxButtonThemeData> {
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
+    super.spinnerColor,
+    super.spinnerBackgroundColor,
+    super.spinnerSize,
+    super.spinnerWidth,
+    super.spinnerRounded,
     super.titleStyle,
     super.subtitleStyle,
     super.titleSize,
@@ -127,6 +134,8 @@ class WxButton extends WxSheet<WxButtonThemeData> {
     super.overlay,
     super.overlayColor,
     super.overlayOpacity,
+    super.overlayShape,
+    super.overlayExtent,
     super.elevationColor,
     super.elevation,
     super.tileAlign,
@@ -159,6 +168,11 @@ class WxButton extends WxSheet<WxButtonThemeData> {
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
+    super.spinnerColor,
+    super.spinnerBackgroundColor,
+    super.spinnerSize,
+    super.spinnerWidth,
+    super.spinnerRounded,
     super.titleStyle,
     super.subtitleStyle,
     super.titleSize,
@@ -199,7 +213,7 @@ class WxButton extends WxSheet<WxButtonThemeData> {
   }
 
   @override
-  WxButtonStyle? getInheritedStyle(context, inherits) {
+  WxButtonStyle getInheritedStyle(context, inherits) {
     if (inherits) {
       final parentStyle = getParentStyle(context);
       return const WxDrivenButtonStyle()

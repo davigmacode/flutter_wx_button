@@ -31,6 +31,8 @@ class WxIconButton extends WxSheet<WxIconButtonThemeData> {
     super.overlay,
     super.overlayColor,
     super.overlayOpacity,
+    super.overlayShape,
+    super.overlayExtent,
     super.elevationColor,
     super.elevation,
     super.foregroundColor,
@@ -52,6 +54,11 @@ class WxIconButton extends WxSheet<WxIconButtonThemeData> {
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
+    super.spinnerColor,
+    super.spinnerBackgroundColor,
+    super.spinnerSize,
+    super.spinnerWidth,
+    super.spinnerRounded,
     super.focusedStyle,
     super.hoveredStyle,
     super.pressedStyle,
@@ -64,10 +71,6 @@ class WxIconButton extends WxSheet<WxIconButtonThemeData> {
     super.autofocus,
     super.focusNode,
     super.onPressed,
-    super.leading,
-    super.trailing,
-    super.title,
-    super.subtitle,
     super.child,
   }) : super.circle();
 
@@ -82,7 +85,7 @@ class WxIconButton extends WxSheet<WxIconButtonThemeData> {
   }
 
   @override
-  WxIconButtonStyle? getInheritedStyle(context, inherits) {
+  WxIconButtonStyle getInheritedStyle(context, inherits) {
     if (inherits) {
       final parentStyle = getParentStyle(context);
       return const WxDrivenIconButtonStyle()

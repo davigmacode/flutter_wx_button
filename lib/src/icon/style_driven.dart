@@ -43,6 +43,8 @@ class WxDrivenIconButtonStyle extends WxIconButtonStyle
     super.clipBehavior,
     super.overlayColor,
     super.overlayOpacity,
+    super.overlayShape,
+    super.overlayExtent,
     super.surfaceTint,
     super.elevationColor,
     super.elevation,
@@ -64,6 +66,11 @@ class WxDrivenIconButtonStyle extends WxIconButtonStyle
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
+    super.spinnerColor,
+    super.spinnerBackgroundColor,
+    super.spinnerSize,
+    super.spinnerWidth,
+    super.spinnerRounded,
     this.focusedStyle,
     this.hoveredStyle,
     this.pressedStyle,
@@ -109,11 +116,11 @@ class WxDrivenIconButtonStyle extends WxIconButtonStyle
   /// Resolves the value for the given set of events
   /// if `value` is an event driven [WxIconButtonStyle],
   /// otherwise returns the value itself.
-  static WxIconButtonStyle? evaluate(
-    WxIconButtonStyle? value,
+  static WxIconButtonStyle evaluate(
+    WxIconButtonStyle value,
     Set<WxSheetEvent> events,
   ) {
-    return WxDrivenSheetStyle.evaluate<WxIconButtonStyle>(value, events);
+    return WxDrivenSheetStyle.evaluate(value, events);
   }
 
   @override
@@ -151,6 +158,8 @@ class WxDrivenIconButtonStyle extends WxIconButtonStyle
     clipBehavior,
     overlayColor,
     overlayOpacity,
+    overlayShape,
+    overlayExtent,
     surfaceTint,
     elevationColor,
     elevation,
@@ -184,6 +193,11 @@ class WxDrivenIconButtonStyle extends WxIconButtonStyle
     iconColor,
     iconOpacity,
     iconSize,
+    spinnerColor,
+    spinnerBackgroundColor,
+    spinnerSize,
+    spinnerWidth,
+    spinnerRounded,
     titleStyle,
     subtitleStyle,
     titleSize,
@@ -226,6 +240,8 @@ class WxDrivenIconButtonStyle extends WxIconButtonStyle
       clipBehavior: clipBehavior,
       overlayColor: overlayColor,
       overlayOpacity: overlayOpacity,
+      overlayShape: overlayShape,
+      overlayExtent: overlayExtent,
       surfaceTint: surfaceTint,
       elevationColor: elevationColor,
       elevation: elevation,
@@ -259,6 +275,11 @@ class WxDrivenIconButtonStyle extends WxIconButtonStyle
       iconColor: iconColor,
       iconOpacity: iconOpacity,
       iconSize: iconSize,
+      spinnerColor: spinnerColor,
+      spinnerBackgroundColor: spinnerBackgroundColor,
+      spinnerSize: spinnerSize,
+      spinnerWidth: spinnerWidth,
+      spinnerRounded: spinnerRounded,
       titleStyle: titleStyle,
       subtitleStyle: subtitleStyle,
       titleSize: titleSize,
