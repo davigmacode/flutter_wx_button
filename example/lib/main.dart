@@ -9,6 +9,7 @@ import 'package:wx_button_example/sample_disabled.dart';
 import 'package:wx_button_example/sample_driven.dart';
 import 'package:wx_button_example/sample_icon.dart';
 import 'package:wx_button_example/sample_severity.dart';
+import 'package:wx_button_example/sample_gradient.dart';
 import 'package:wx_text/wx_text.dart';
 import 'theme_picker.dart';
 
@@ -110,6 +111,8 @@ class MyHomePage extends StatelessWidget {
               SampleAlign(),
               SizedBox(height: 20),
               SampleDriven(),
+              SizedBox(height: 20),
+              SampleGradient(),
               SizedBox(height: 40),
             ],
           ),

@@ -5,20 +5,26 @@ class WxButtonVariant extends WxSheetVariant {
   /// Creates a new instance of `WxButtonVariant` with the provided value.
   const WxButtonVariant(super.value);
 
-  /// A constant variant representing textual content.
+  /// A constant variant representing textual variant.
   static const text = WxButtonVariant('text');
 
-  /// A constant variant representing tonal variations.
+  /// A constant variant representing tonal variation.
   static const tonal = WxButtonVariant('tonal');
 
-  /// A constant variant representing elevated content.
+  /// A constant variant representing elevated variant.
   static const elevated = WxButtonVariant('elevated');
 
-  /// A constant variant representing filled content.
+  /// A constant variant representing filled variant.
   static const filled = WxButtonVariant('filled');
 
-  /// A constant variant representing outlined content.
+  /// A constant variant representing outlined variant.
   static const outlined = WxButtonVariant('outlined');
+
+  /// A constant variant representing outlined variant.
+  static const gradient = WxButtonVariant('gradient');
+
+  /// A constant variant representing undefined variant.
+  static const undefined = WxButtonVariant('undefined');
 }
 
 /// Represents the different sizes available
@@ -41,4 +47,7 @@ class WxButtonSize extends WxSheetSize {
 
   /// Represents the huge button size.
   static const huge = WxButtonSize('huge');
+
+  /// Represents the huge button size.
+  static const undefined = WxButtonSize('undefined');
 }

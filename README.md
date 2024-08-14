@@ -10,29 +10,6 @@ Revamp the Flutter Button to empower developers with more intuitive and streamli
 
 To read more about classes and other references used by `wx_button`, see the [API Reference](https://pub.dev/documentation/wx_button/latest/).
 
-### Basic Usage:
-
-The `WxButton` class provides various button types:
-* `WxTextButton`: A flat button with text label.
-* `WxTonalButton`: A button with a colored background and text label.
-* `WxElevatedButton`: A raised button with a shadow effect.
-* `WxFilledButton`: A button with filled background and text label.
-* `WxOutlinedButton`: A button with an outlined border and text label.
-
-Each button type requires an `onPressed` callback function to handle button press events. You can also provide a text child using the `child` property.
-
-```dart
-WxTextButton(
-  onPressed: () {},
-  child: const Text('Text Button'),
-),
-WxTonalButton(
-  onPressed: () {},
-  child: const Text('Tonal Button'),
-),
-// ... and so on for other button types
-```
-
 ## Sponsoring
 
 <a href="https://www.buymeacoffee.com/davigmacode" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="45"></a>
