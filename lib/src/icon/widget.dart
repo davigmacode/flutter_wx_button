@@ -4,10 +4,14 @@ import 'theme_data.dart';
 import 'style_driven.dart';
 import 'style.dart';
 
-/// The sheet widget serves as the building block for many Widgetarian components,
-/// providing a base layer for customization.
+/// The `WxIconButton` widget serves as a customizable button building block for
+/// Widgetarian components. It provides a base layer for creating various button styles
+/// through properties like color, size, and effects.
 class WxIconButton extends WxSheet<WxIconButtonThemeData> {
-  /// Create a button widget
+  /// The `WxIconButton` widget serves as the building block for many Widgetarian components,
+  /// providing a base layer for customization of icon buttons. It inherits from `WxSheet<WxIconButtonThemeData>`,
+  /// which means it benefits from all the styling and behavior properties of a sheet widget,
+  /// but specifically designed for icon buttons.
   const WxIconButton({
     super.key,
     super.radius,
@@ -35,6 +39,7 @@ class WxIconButton extends WxSheet<WxIconButtonThemeData> {
     super.overlayExtent,
     super.elevationColor,
     super.elevation,
+    super.adaptiveForegroundColor,
     super.foregroundColor,
     super.foregroundOpacity,
     super.foregroundAlpha,

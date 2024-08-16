@@ -20,13 +20,13 @@ abstract class WxButtonThemePreset extends WxButtonThemeData
       const WxDrivenButtonStyle().merge(super.style);
 
   @override
-  WxDrivenButtonStyle baseStyle(WxSheetStyleResolverData data) {
-    return const WxDrivenButtonStyle().merge(super.baseStyle(data)).copyWith(
-          textStyle: textTheme.labelLarge,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          spinnerSize: 16,
-          spinnerWidth: 2,
-        );
+  WxDrivenButtonStyle baseStyle(data) {
+    return WxDrivenButtonStyle(
+      textStyle: textTheme.labelLarge,
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      spinnerSize: 16,
+      spinnerWidth: 2,
+    );
   }
 }
 

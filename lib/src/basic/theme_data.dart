@@ -1,11 +1,27 @@
+import 'package:wx_sheet/wx_event.dart';
 import 'package:wx_sheet/wx_sheet.dart';
 import 'style.dart';
 
 class WxButtonThemeData extends WxSheetThemeData<WxButtonThemeData> {
+  /// Whether to display a leading spinner before the button content.
+  final bool leadingSpinner;
+
+  /// Whether to display a trailing spinner after the button content.
+  final bool trailingSpinner;
+
+  @override
+  get leading => leadingSpinner ? const DrivenSpinner() : super.leading;
+
+  @override
+  get trailing => trailingSpinner ? const DrivenSpinner() : super.trailing;
+
   /// Creates a theme data that can be used for [SheetTheme].
   const WxButtonThemeData({
     super.curve,
     super.duration,
+    super.variant,
+    super.size,
+    super.severity,
     WxButtonStyle super.style = const WxButtonStyle(),
     WxSheetStyleResolver<WxButtonStyle>? super.styleResolver,
     super.overlay,
@@ -16,18 +32,34 @@ class WxButtonThemeData extends WxSheetThemeData<WxButtonThemeData> {
     super.mouseCursor,
     super.leading,
     super.trailing,
+    this.leadingSpinner = false,
+    this.trailingSpinner = false,
   }) : super(animated: true);
 
   WxButtonThemeData.from([
-    super.other,
-    super.fallback = const WxButtonThemeData(),
-  ]) : super.from();
+    WxButtonThemeData? super.other,
+    WxButtonThemeData super.fallback = const WxButtonThemeData(),
+  ])  : leadingSpinner = other?.leadingSpinner ?? fallback.leadingSpinner,
+        trailingSpinner = other?.trailingSpinner ?? fallback.trailingSpinner,
+        super.from();
+
+  WxButtonThemeData.fromAncestor(
+    WxSheetThemeData<WxButtonThemeData>? other, {
+    WxButtonThemeData fallback = const WxButtonThemeData(),
+    bool? leadingSpinner,
+    bool? trailingSpinner,
+  })  : leadingSpinner = leadingSpinner ?? fallback.leadingSpinner,
+        trailingSpinner = trailingSpinner ?? fallback.trailingSpinner,
+        super.from(other, fallback);
 
   @override
   WxButtonThemeData copyWith({
     animated,
     curve,
     duration,
+    variant,
+    size,
+    severity,
     style,
     styleResolver,
     overlay,
@@ -38,11 +70,16 @@ class WxButtonThemeData extends WxSheetThemeData<WxButtonThemeData> {
     mouseCursor,
     leading,
     trailing,
+    bool? leadingSpinner,
+    bool? trailingSpinner,
   }) {
     final ancestor = super.copyWith(
       animated: animated,
       curve: curve,
       duration: duration,
+      variant: variant,
+      size: size,
+      severity: severity,
       style: style,
       styleResolver: styleResolver,
       overlay: overlay,
@@ -54,7 +91,11 @@ class WxButtonThemeData extends WxSheetThemeData<WxButtonThemeData> {
       leading: leading,
       trailing: trailing,
     );
-    return WxButtonThemeData.from(ancestor);
+    return WxButtonThemeData.fromAncestor(
+      ancestor,
+      leadingSpinner: leadingSpinner,
+      trailingSpinner: trailingSpinner,
+    );
   }
 
   @override
@@ -63,6 +104,6 @@ class WxButtonThemeData extends WxSheetThemeData<WxButtonThemeData> {
     if (other == null) return this;
 
     final ancestor = super.merge(other);
-    return WxButtonThemeData.from(ancestor);
+    return WxButtonThemeData.fromAncestor(ancestor);
   }
 }

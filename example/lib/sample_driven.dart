@@ -22,7 +22,7 @@ class SampleDriven extends StatelessWidget {
             ),
             const SizedBox(height: 15),
             const LoadingButton(
-              leading: DrivenSpinner(),
+              leadingSpinner: true,
               variant: WxButtonVariant.outlined,
               hoveredStyle: WxButtonStyle(
                 variant: WxButtonVariant.tonal,
@@ -71,6 +71,8 @@ class LoadingButton extends StatefulWidget {
     this.loadingStyle,
     this.leading,
     this.trailing,
+    this.leadingSpinner,
+    this.trailingSpinner,
     required this.child,
   });
 
@@ -79,6 +81,8 @@ class LoadingButton extends StatefulWidget {
   final WxButtonStyle? loadingStyle;
   final Widget? leading;
   final Widget? trailing;
+  final bool? leadingSpinner;
+  final bool? trailingSpinner;
   final Widget child;
 
   @override
@@ -111,6 +115,8 @@ class _LoadingButtonState extends State<LoadingButton> {
       loading: loading,
       leading: widget.leading,
       trailing: widget.trailing,
+      leadingSpinner: widget.leadingSpinner,
+      trailingSpinner: widget.trailingSpinner,
       hoveredStyle: widget.hoveredStyle,
       loadingStyle: widget.loadingStyle,
       spacing: 12,

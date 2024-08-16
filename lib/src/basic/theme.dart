@@ -57,7 +57,7 @@ class WxButtonTheme extends WxSheetTheme<WxButtonThemeData> {
   /// ```
   static WxButtonThemeData? maybeOf(BuildContext context) {
     final parent = WxSheetTheme.maybeOf<WxButtonThemeData>(context);
-    return WxButtonThemeData.from(parent);
+    return WxButtonThemeData.fromAncestor(parent);
   }
 
   /// The [data] from the closest instance of

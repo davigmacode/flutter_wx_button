@@ -41,6 +41,11 @@ class SampleIcon extends StatelessWidget {
                 onPressed: () {},
                 child: const Icon(Icons.settings),
               ),
+              WxIconButton(
+                variant: WxButtonVariant.gradient,
+                onPressed: () {},
+                child: const Icon(Icons.settings),
+              ),
             ],
           ),
           const SizedBox(height: 15),
@@ -78,40 +83,9 @@ class SampleIcon extends StatelessWidget {
                 onPressed: () {},
                 child: const Icon(Icons.settings),
               ),
-            ],
-          ),
-          const SizedBox(height: 15),
-          Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            children: [
               WxIconButton(
                 variant: WxButtonVariant.gradient,
-                severity: dangerColor,
-                onPressed: () {},
-                child: const Icon(Icons.settings),
-              ),
-              WxIconButton(
-                variant: WxButtonVariant.gradient,
-                severity: dangerColor,
-                onPressed: () {},
-                child: const Icon(Icons.settings),
-              ),
-              WxIconButton(
-                variant: WxButtonVariant.gradient,
-                severity: dangerColor,
-                onPressed: () {},
-                child: const Icon(Icons.settings),
-              ),
-              WxIconButton(
-                variant: WxButtonVariant.gradient,
-                severity: dangerColor,
-                onPressed: () {},
-                child: const Icon(Icons.settings),
-              ),
-              WxIconButton(
-                variant: WxButtonVariant.gradient,
-                severity: dangerColor,
+                severity: warningColor,
                 onPressed: () {},
                 child: const Icon(Icons.settings),
               ),

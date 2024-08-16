@@ -1,13 +1,28 @@
+import 'package:wx_sheet/wx_event.dart';
 import 'package:wx_sheet/wx_sheet.dart';
 import 'theme.dart';
 import 'theme_data.dart';
 import 'style.dart';
 import 'style_driven.dart';
 
-/// The sheet widget serves as the building block for many Widgetarian components,
-/// providing a base layer for customization.
+/// The `WxButton` widget serves as the building block for many Widgetarian components,
+/// providing a base layer for customization with a button design.
+///
+/// It inherits all the functionalities from the base class `WxSheet` and adds properties
+/// specifically for buttons, like leading and trailing spinners.
 class WxButton extends WxSheet<WxButtonThemeData> {
-  /// Create a button widget
+  /// Whether to display a leading spinner before the button content.
+  final bool? leadingSpinner;
+
+  /// Whether to display a trailing spinner after the button content.
+  final bool? trailingSpinner;
+
+  /// Creates a button widget with various customization options.
+  ///
+  /// Inherits all the properties from the base class `WxSheet` and allows specifying
+  /// additional properties for buttons like:
+  ///  * `leadingSpinner`: Whether to display a leading spinner.
+  ///  * `trailingSpinner`: Whether to display a trailing spinner.
   const WxButton({
     super.key,
     super.animated,
@@ -52,6 +67,7 @@ class WxButton extends WxSheet<WxButtonThemeData> {
     super.textOverflow,
     super.textSoftWrap,
     super.textWidthBasis,
+    super.adaptiveForegroundColor,
     super.foregroundColor,
     super.foregroundOpacity,
     super.foregroundAlpha,
@@ -101,12 +117,19 @@ class WxButton extends WxSheet<WxButtonThemeData> {
     super.onPressed,
     super.leading,
     super.trailing,
+    this.leadingSpinner,
+    this.trailingSpinner,
     super.title,
     super.subtitle,
     super.child,
   });
 
-  /// Create a block button widget
+  /// Creates a block button widget with various customization options.
+  ///
+  /// Inherits all the properties from the base class `WxSheet` and allows specifying
+  /// additional properties for buttons like:
+  ///  * `leadingSpinner`: Whether to display a leading spinner.
+  ///  * `trailingSpinner`: Whether to display a trailing spinner.
   const WxButton.block({
     super.key,
     super.animated,
@@ -197,6 +220,8 @@ class WxButton extends WxSheet<WxButtonThemeData> {
     super.onPressed,
     super.leading,
     super.trailing,
+    this.leadingSpinner,
+    this.trailingSpinner,
     super.title,
     super.subtitle,
     super.child,
@@ -222,4 +247,24 @@ class WxButton extends WxSheet<WxButtonThemeData> {
     }
     return effectiveStyle;
   }
+
+  /// Returns a `DrivenSpinner` if `leadingSpinner` is true,
+  /// `DrivenChild.all(null)` if `leadingSpinner` is false,
+  /// otherwise returns the default leading content.
+  @override
+  get leading => leadingSpinner == true
+      ? const DrivenSpinner()
+      : leadingSpinner == false
+          ? const DrivenChild.all(null)
+          : super.leading;
+
+  /// Returns a `DrivenSpinner` if `trailingSpinner` is true,
+  /// `DrivenChild.all(null)` if `trailingSpinner` is false,
+  /// otherwise returns the default trailing content.
+  @override
+  get trailing => trailingSpinner == true
+      ? const DrivenSpinner()
+      : trailingSpinner == false
+          ? const DrivenChild.all(null)
+          : super.trailing;
 }

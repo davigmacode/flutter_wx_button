@@ -17,11 +17,14 @@ abstract class WxIconButtonThemePreset extends WxIconButtonThemeData
 
   @override
   WxDrivenIconButtonStyle get style =>
-      const WxDrivenIconButtonStyle().merge(super.style).copyWith(
-            direction: Axis.horizontal,
-            alignment: Alignment.center,
-            spacing: 0,
-          );
+      const WxDrivenIconButtonStyle().merge(super.style);
+
+  @override
+  WxDrivenIconButtonStyle baseStyle(data) {
+    return const WxDrivenIconButtonStyle(
+      alignment: Alignment.center,
+    );
+  }
 }
 
 class WxIconButtonThemeAdaptive extends WxIconButtonThemePreset {

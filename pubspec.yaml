@@ -20,7 +20,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  wx_sheet: ^4.5.0
+  wx_sheet: ^4.6.0
 
 dev_dependencies:
   flutter_test:
