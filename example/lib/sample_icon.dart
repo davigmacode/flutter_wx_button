@@ -80,6 +80,43 @@ class SampleIcon extends StatelessWidget {
               ),
             ],
           ),
+          const SizedBox(height: 15),
+          Wrap(
+            spacing: 10,
+            runSpacing: 10,
+            children: [
+              WxIconButton(
+                variant: WxButtonVariant.gradient,
+                severity: dangerColor,
+                onPressed: () {},
+                child: const Icon(Icons.settings),
+              ),
+              WxIconButton(
+                variant: WxButtonVariant.gradient,
+                severity: dangerColor,
+                onPressed: () {},
+                child: const Icon(Icons.settings),
+              ),
+              WxIconButton(
+                variant: WxButtonVariant.gradient,
+                severity: dangerColor,
+                onPressed: () {},
+                child: const Icon(Icons.settings),
+              ),
+              WxIconButton(
+                variant: WxButtonVariant.gradient,
+                severity: dangerColor,
+                onPressed: () {},
+                child: const Icon(Icons.settings),
+              ),
+              WxIconButton(
+                variant: WxButtonVariant.gradient,
+                severity: dangerColor,
+                onPressed: () {},
+                child: const Icon(Icons.settings),
+              ),
+            ],
+          ),
         ],
       ),
     );

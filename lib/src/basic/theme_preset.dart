@@ -17,12 +17,17 @@ abstract class WxButtonThemePreset extends WxButtonThemeData
 
   @override
   WxDrivenButtonStyle get style =>
-      const WxDrivenButtonStyle().merge(super.style).copyWith(
-            direction: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            spinnerSize: 16,
-            spinnerWidth: 2,
-          );
+      const WxDrivenButtonStyle().merge(super.style);
+
+  @override
+  WxDrivenButtonStyle baseStyle(WxSheetStyleResolverData data) {
+    return const WxDrivenButtonStyle().merge(super.baseStyle(data)).copyWith(
+          textStyle: textTheme.labelLarge,
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          spinnerSize: 16,
+          spinnerWidth: 2,
+        );
+  }
 }
 
 class WxButtonThemeAdaptive extends WxButtonThemePreset {
