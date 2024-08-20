@@ -8,7 +8,9 @@ Revamp the Flutter Button to empower developers with more intuitive and streamli
 
 ## Usage
 
-To read more about classes and other references used by `wx_button`, see the [API Reference](https://pub.dev/documentation/wx_button/latest/).
+Please see the [example](https://github.com/davigmacode/flutter_wx_button/tree/main/example/lib).
+
+For more information on classes and other references, see the [API Reference](https://pub.dev/documentation/wx_button/latest/).
 
 ## Sponsoring
 

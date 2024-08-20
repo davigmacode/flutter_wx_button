@@ -1,3 +1,7 @@
+## 2.0.0
+
+* Update to latest wx_sheet and refactor code.
+
 ## 1.0.0
 
 * Added button widget.
