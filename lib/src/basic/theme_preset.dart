@@ -22,8 +22,8 @@ abstract class WxButtonThemePreset extends WxButtonThemeData
   @override
   WxDrivenButtonStyle baseStyle(data) {
     return WxDrivenButtonStyle(
+      adaptiveSpacing: true,
       textStyle: textTheme.labelLarge,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
       spinnerSize: 16,
       spinnerWidth: 2,
     );
@@ -52,11 +52,17 @@ class WxButtonThemeM2 extends WxButtonThemePreset {
   get baseTheme => WxSheetThemeTapM2(context);
 
   @override
-  get style => super.style.copyWith(
-        minHeight: 36.0,
-        iconSize: 18.0,
-        spacing: 8.0,
-      );
+  baseStyle(data) {
+    return super.baseStyle(data).copyWith(
+          padding: EdgeInsets.only(
+            left: data.hasLeading ? 12 : 16,
+            right: data.hasTrailing ? 12 : 16,
+          ),
+          minHeight: 36.0,
+          iconSize: 18.0,
+          spacing: 8.0,
+        );
+  }
 }
 
 class WxButtonThemeM3 extends WxButtonThemePreset {
@@ -70,11 +76,17 @@ class WxButtonThemeM3 extends WxButtonThemePreset {
   get baseTheme => WxSheetThemeTapM3(context);
 
   @override
-  get style => super.style.copyWith(
-        minHeight: 40.0,
-        iconSize: 18.0,
-        spacing: 8.0,
-      );
+  baseStyle(data) {
+    return super.baseStyle(data).copyWith(
+          padding: EdgeInsets.only(
+            left: data.hasLeading ? 12 : 16,
+            right: data.hasTrailing ? 12 : 16,
+          ),
+          minHeight: 40.0,
+          iconSize: 18.0,
+          spacing: 8.0,
+        );
+  }
 }
 
 class WxButtonThemeIOS extends WxButtonThemePreset {
@@ -88,9 +100,15 @@ class WxButtonThemeIOS extends WxButtonThemePreset {
   get baseTheme => WxSheetThemeTapIOS(context);
 
   @override
-  get style => super.style.copyWith(
-        minHeight: 44.0,
-        iconSize: 18.0,
-        spacing: 8.0,
-      );
+  baseStyle(data) {
+    return super.baseStyle(data).copyWith(
+          padding: EdgeInsets.only(
+            left: data.hasLeading ? 12 : 16,
+            right: data.hasTrailing ? 12 : 16,
+          ),
+          minHeight: 44.0,
+          iconSize: 18.0,
+          spacing: 8.0,
+        );
+  }
 }
