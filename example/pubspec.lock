@@ -283,10 +283,10 @@ packages:
     dependency: transitive
     description:
       name: wx_sheet
-      sha256: f6f44954271898ed14924f406fca3e02fcc3e17e3ce0c8f0f31a51f1191e95cc
+      sha256: ecebe792d3c937cbf662e6a577b4a2b2cb0a9016bf407f566e153b5270e0d5f0
       url: "https://pub.dev"
     source: hosted
-    version: "4.6.0"
+    version: "4.7.0"
   wx_text:
     dependency: "direct main"
     description:
