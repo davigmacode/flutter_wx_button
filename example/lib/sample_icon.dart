@@ -10,7 +10,10 @@ class SampleIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrapper(
       title: 'Icon Button',
+      source: 'sample_icon.dart',
+      maxWidth: 400,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Wrap(
             spacing: 10,

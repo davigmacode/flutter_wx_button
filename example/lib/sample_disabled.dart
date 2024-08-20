@@ -9,40 +9,45 @@ class SampleDisabled extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrapper(
       title: 'Disabled',
-      child: Wrap(
-        spacing: 10,
-        children: [
-          WxButton(
-            variant: WxButtonVariant.text,
-            onPressed: () {},
-            disabled: true,
-            child: const Text('Text'),
-          ),
-          WxButton(
-            variant: WxButtonVariant.tonal,
-            onPressed: () {},
-            disabled: true,
-            child: const Text('Tonal'),
-          ),
-          WxButton(
-            variant: WxButtonVariant.elevated,
-            onPressed: () {},
-            disabled: true,
-            child: const Text('Elevated'),
-          ),
-          WxButton(
-            variant: WxButtonVariant.filled,
-            onPressed: () {},
-            disabled: true,
-            child: const Text('Filled'),
-          ),
-          WxButton(
-            variant: WxButtonVariant.outlined,
-            onPressed: () {},
-            disabled: true,
-            child: const Text('Outlined'),
-          ),
-        ],
+      source: 'sample_disabled.dart',
+      maxWidth: 450,
+      child: Center(
+        child: Wrap(
+          runSpacing: 10,
+          spacing: 10,
+          children: [
+            WxButton(
+              variant: WxButtonVariant.text,
+              onPressed: () {},
+              disabled: true,
+              child: const Text('Text'),
+            ),
+            WxButton(
+              variant: WxButtonVariant.tonal,
+              onPressed: () {},
+              disabled: true,
+              child: const Text('Tonal'),
+            ),
+            WxButton(
+              variant: WxButtonVariant.elevated,
+              onPressed: () {},
+              disabled: true,
+              child: const Text('Elevated'),
+            ),
+            WxButton(
+              variant: WxButtonVariant.filled,
+              onPressed: () {},
+              disabled: true,
+              child: const Text('Filled'),
+            ),
+            WxButton(
+              variant: WxButtonVariant.outlined,
+              onPressed: () {},
+              disabled: true,
+              child: const Text('Outlined'),
+            ),
+          ],
+        ),
       ),
     );
   }

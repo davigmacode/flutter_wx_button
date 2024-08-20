@@ -9,6 +9,8 @@ class SampleCompound extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrapper(
       title: 'Compound Button',
+      source: 'sample_compound.dart',
+      maxWidth: 400,
       child: Column(
         children: [
           WxButton(

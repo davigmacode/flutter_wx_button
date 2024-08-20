@@ -10,10 +10,13 @@ class SampleSeverity extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrapper(
       title: 'Color Severity',
+      source: 'sample_severity.dart',
+      maxWidth: 750,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Wrap(
+            runSpacing: 10,
             spacing: 10,
             children: [
               WxButton(
@@ -50,6 +53,7 @@ class SampleSeverity extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           Wrap(
+            runSpacing: 10,
             spacing: 10,
             children: [
               WxButton(
@@ -86,6 +90,7 @@ class SampleSeverity extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           Wrap(
+            runSpacing: 10,
             spacing: 10,
             children: [
               WxButton(
@@ -122,6 +127,7 @@ class SampleSeverity extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           Wrap(
+            runSpacing: 10,
             spacing: 10,
             children: [
               WxButton(

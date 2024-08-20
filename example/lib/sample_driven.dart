@@ -11,16 +11,18 @@ class SampleDriven extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrapper(
       title: 'Mix Appearance and Widget on Event Change',
-      child: SizedBox(
-        width: 300,
-        child: Column(
+      source: 'sample_driven.dart',
+      maxWidth: 450,
+      child: Center(
+        child: Wrap(
+          spacing: 10,
+          runSpacing: 10,
           children: [
             const LoadingButton(
               variant: WxButtonVariant.filled,
               trailing: DrivenSpinner(width: 3, size: 14),
               child: Text('Trailing Spinner'),
             ),
-            const SizedBox(height: 15),
             const LoadingButton(
               leadingSpinner: true,
               variant: WxButtonVariant.outlined,
@@ -34,7 +36,6 @@ class SampleDriven extends StatelessWidget {
               ),
               child: Text('Leading Spinner'),
             ),
-            const SizedBox(height: 15),
             LoadingIconButton(
               variant: WxButtonVariant.tonal,
               hoveredStyle: const WxButtonStyle(
