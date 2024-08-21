@@ -6,15 +6,15 @@ import 'style.dart';
 
 class WxButtonTheme extends WxSheetTheme<WxButtonThemeData> {
   /// Creates a theme that controls
-  /// how descendant [WxSheet]s should look like.
+  /// how descendant [WxButton]s should look like.
   const WxButtonTheme({
     super.key,
     required super.data,
     required super.child,
   });
 
-  /// Creates an [WxSheetTheme] that controls the style of
-  /// descendant widgets, and merges in the current [WxSheetTheme], if any.
+  /// Creates an [WxButtonTheme] that controls the style of
+  /// descendant widgets, and merges in the current [WxButtonTheme], if any.
   ///
   /// The [style] and [child] arguments must not be null.
   static Widget merge({
@@ -33,27 +33,37 @@ class WxButtonTheme extends WxSheetTheme<WxButtonThemeData> {
     MouseCursor? mouseCursor,
     Widget? leading,
     Widget? trailing,
+    bool? leadingSpinner,
+    bool? trailingSpinner,
     WxButtonThemeData? data,
     required Widget child,
   }) {
-    return WxSheetTheme.merge<WxButtonThemeData>(
-      key: key,
-      data: data,
-      curve: curve,
-      duration: duration,
-      variant: variant,
-      size: size,
-      severity: severity,
-      style: style,
-      styleResolver: styleResolver,
-      overlay: overlay,
-      feedback: feedback,
-      focusable: focusable,
-      disabled: disabled,
-      mouseCursor: mouseCursor,
-      leading: leading,
-      trailing: trailing,
-      child: child,
+    return Builder(
+      builder: (BuildContext context) {
+        final parent = WxButtonTheme.of(context);
+        return WxButtonTheme(
+          key: key,
+          data: parent.merge(data).copyWith(
+                curve: curve,
+                duration: duration,
+                variant: variant,
+                size: size,
+                severity: severity,
+                style: style,
+                styleResolver: styleResolver,
+                overlay: overlay,
+                feedback: feedback,
+                focusable: focusable,
+                disabled: disabled,
+                mouseCursor: mouseCursor,
+                leading: leading,
+                trailing: trailing,
+                leadingSpinner: leadingSpinner,
+                trailingSpinner: trailingSpinner,
+              ),
+          child: child,
+        );
+      },
     );
   }
 
@@ -63,7 +73,7 @@ class WxButtonTheme extends WxSheetTheme<WxButtonThemeData> {
   /// Typical usage is as follows:
   ///
   /// ```dart
-  /// WxSheetThemeData theme = WxSheetTheme.of(context);
+  /// WxButtonData theme = WxButtonTheme.of(context);
   /// ```
   static WxButtonThemeData? maybeOf(BuildContext context) {
     final parent = WxSheetTheme.maybeOf<WxButtonThemeData>(context);
@@ -76,7 +86,7 @@ class WxButtonTheme extends WxSheetTheme<WxButtonThemeData> {
   /// Typical usage is as follows:
   ///
   /// ```dart
-  /// WxSheetThemeData theme = WxSheetTheme.of(context);
+  /// WxButtonThemeData theme = WxButtonTheme.of(context);
   /// ```
   static WxButtonThemeData of(BuildContext context) {
     final parent = WxButtonTheme.maybeOf(context);
