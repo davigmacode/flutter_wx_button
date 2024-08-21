@@ -1,3 +1,8 @@
+## 2.0.1
+
+* Removed WxIconButtonEvent
+* Improved theme merge
+
 ## 2.0.0
 
 * Update to latest wx_sheet and refactor code.
