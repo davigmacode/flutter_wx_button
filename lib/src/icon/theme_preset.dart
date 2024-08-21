@@ -35,7 +35,15 @@ class WxIconButtonThemeAdaptive extends WxIconButtonThemePreset {
   });
 
   @override
-  get baseTheme => WxSheetThemeTapAdaptive(context);
+  get baseTheme {
+    WxIconButtonThemePreset theme = WxIconButtonThemeM2(context);
+    if (isAndroid && useMaterial3) {
+      theme = WxIconButtonThemeM3(context);
+    } else if (isIOS) {
+      theme = WxIconButtonThemeIOS(context);
+    }
+    return theme;
+  }
 }
 
 class WxIconButtonThemeM2 extends WxIconButtonThemePreset {
