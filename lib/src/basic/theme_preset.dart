@@ -37,8 +37,7 @@ class WxButtonThemeAdaptive extends WxButtonThemePreset {
     super.duration,
   });
 
-  @override
-  get baseTheme {
+  WxButtonThemePreset get platformTheme {
     WxButtonThemePreset theme = WxButtonThemeM2(context);
     if (isAndroid && useMaterial3) {
       theme = WxButtonThemeM3(context);
@@ -47,6 +46,15 @@ class WxButtonThemeAdaptive extends WxButtonThemePreset {
     }
     return theme;
   }
+
+  @override
+  get baseTheme => platformTheme.baseTheme;
+
+  @override
+  get effectiveStyle => platformTheme.effectiveStyle;
+
+  @override
+  get styleResolver => platformTheme.styleResolver;
 }
 
 class WxButtonThemeM2 extends WxButtonThemePreset {
