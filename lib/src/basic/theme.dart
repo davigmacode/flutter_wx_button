@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:wx_sheet/wx_sheet.dart';
 import 'theme_data.dart';
 import 'theme_preset.dart';
@@ -9,7 +9,7 @@ class WxButtonTheme extends WxSheetTheme<WxButtonThemeData> {
   /// how descendant [WxButton]s should look like.
   const WxButtonTheme({
     super.key,
-    required super.data,
+    required WxButtonThemeData super.data,
     required super.child,
   });
 
@@ -76,8 +76,14 @@ class WxButtonTheme extends WxSheetTheme<WxButtonThemeData> {
   /// WxButtonData theme = WxButtonTheme.of(context);
   /// ```
   static WxButtonThemeData? maybeOf(BuildContext context) {
-    final parent = WxSheetTheme.maybeOf<WxButtonThemeData>(context);
-    return WxButtonThemeData.fromAncestor(parent);
+    final parentTheme =
+        context.dependOnInheritedWidgetOfExactType<WxButtonTheme>();
+    if (parentTheme != null) {
+      return WxButtonThemeData.fromAncestor(parentTheme.data);
+    }
+
+    final globalTheme = Theme.of(context).extension<WxButtonThemeData>();
+    return globalTheme;
   }
 
   /// The [data] from the closest instance of

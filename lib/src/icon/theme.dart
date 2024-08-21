@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:wx_sheet/wx_sheet.dart';
 import 'theme_data.dart';
 import 'theme_preset.dart';
@@ -6,15 +6,15 @@ import 'style.dart';
 
 class WxIconButtonTheme extends WxSheetTheme<WxIconButtonThemeData> {
   /// Creates a theme that controls
-  /// how descendant [WxButton]s should look like.
+  /// how descendant [WxIconButton]s should look like.
   const WxIconButtonTheme({
     super.key,
-    required super.data,
+    required WxIconButtonThemeData super.data,
     required super.child,
   });
 
-  /// Creates an [WxButtonTheme] that controls the style of
-  /// descendant widgets, and merges in the current [WxButtonTheme], if any.
+  /// Creates an [WxIconButtonTheme] that controls the style of
+  /// descendant widgets, and merges in the current [WxIconButtonTheme], if any.
   ///
   /// The [style] and [child] arguments must not be null.
   static Widget merge({
@@ -68,8 +68,14 @@ class WxIconButtonTheme extends WxSheetTheme<WxIconButtonThemeData> {
   /// WxIconButtonThemeData theme = WxIconButtonTheme.of(context);
   /// ```
   static WxIconButtonThemeData? maybeOf(BuildContext context) {
-    final parent = WxSheetTheme.maybeOf<WxIconButtonThemeData>(context);
-    return WxIconButtonThemeData.from(parent);
+    final parentTheme =
+        context.dependOnInheritedWidgetOfExactType<WxIconButtonTheme>();
+    if (parentTheme != null) {
+      return WxIconButtonThemeData.from(parentTheme.data);
+    }
+
+    final globalTheme = Theme.of(context).extension<WxIconButtonThemeData>();
+    return globalTheme;
   }
 
   /// The [data] from the closest instance of
