@@ -1,3 +1,8 @@
+## 2.0.2
+
+* Improved adaptive theme preset
+* Improved theme maybeOf
+
 ## 2.0.1
 
 * Removed WxIconButtonEvent
