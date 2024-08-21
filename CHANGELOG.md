@@ -1,3 +1,7 @@
+## 2.0.3
+
+* Improved adaptive theme preset
+
 ## 2.0.2
 
 * Improved adaptive theme preset
