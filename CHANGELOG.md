@@ -1,3 +1,7 @@
+## 2.0.4
+
+* Update to wx_sheet v4.8.0, Removed option to style checkmark
+
 ## 2.0.3
 
 * Improved adaptive theme preset

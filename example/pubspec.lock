@@ -363,15 +363,15 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "2.0.0"
+    version: "2.0.4"
   wx_sheet:
     dependency: transitive
     description:
       name: wx_sheet
-      sha256: ecebe792d3c937cbf662e6a577b4a2b2cb0a9016bf407f566e153b5270e0d5f0
+      sha256: "1a8feefec23e997cf6f5ee8d842eda03e62709dbe77b2114aec2c187e5ebe7cd"
       url: "https://pub.dev"
     source: hosted
-    version: "4.7.0"
+    version: "4.8.0"
   wx_text:
     dependency: "direct main"
     description:
