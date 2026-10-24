@@ -1,3 +1,8 @@
+# wx_button
+
+> [!IMPORTANT]
+> **Repository Moved to Monorepo**: Active development of `wx_button` has migrated to the official [**davigmacode/flutter_wx**](https://github.com/davigmacode/flutter_wx) monorepo under [packages/wx_button](https://github.com/davigmacode/flutter_wx/tree/main/packages/wx_button).
+
 [![Pub Version](https://img.shields.io/pub/v/wx_button)](https://pub.dev/packages/wx_button) ![GitHub](https://img.shields.io/github/license/davigmacode/flutter_wx_button) [![GitHub](https://badgen.net/badge/icon/buymeacoffee?icon=buymeacoffee&color=yellow&label)](https://www.buymeacoffee.com/davigmacode) [![GitHub](https://badgen.net/badge/icon/ko-fi?icon=kofi&color=red&label)](https://ko-fi.com/davigmacode)
 
 Revamp the Flutter Button to empower developers with more intuitive and streamlined styling and theming capabilities. This will eliminate platform-specific limitations, allowing for a truly cross-platform design experience. By decoupling the button's appearance from the underlying platform, developers gain greater control over the button's look and feel, making it easier to tailor it to their specific design requirements and brand identity.
